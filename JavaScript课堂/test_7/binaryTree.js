@@ -1,5 +1,5 @@
 /*
-* 2017/10/16 create by guojufeng
+* 2017/10/26 create by guojufeng
 * 具体源码分析见二叉树解析
 */
 
@@ -37,15 +37,44 @@ function BinaryTree(){
 		}
 	};
 	// 遍历二叉树的接口 api
-	this.startTraversal = function(callback){
-		traversalBinary(oRoot,callback);//遍历要从oRoot开始，然后一层一层向下找，找到起点开始遍历
-	}
-	// 遍历二叉树——中序遍历
-	var traversalBinary = function(node,callback){
-		if(!(node === null)){
-			traversalBinary(node.left,callback);//中序遍历的书序就是左根右，所以先node.left、再node.key、最后node.right
-			callback(node.key);//得到当前遍历的值然后当参数传给callback函数，然后。看自己的需求，遍历到当前值时自己需要什么操作就写在callback里
-			traversalBinary(node.right,callback);
+	this.startTraversal = function(type,callback){
+		if(type === "DLR"){
+			console.log("前序遍历");
+			prevTra(oRoot,callback);
+		}else if(type === "LDR"){
+			console.log("中序遍历");
+			centerTra(oRoot,callback);//遍历要从oRoot开始，然后一层一层向下找，找到起点开始遍历
+		}else if(type === "LRD"){
+			console.log("后序遍历");
+			backTra(oRoot,callback);
 		}
-	}
+	};
+	// 遍历二叉树——前序遍历DLR
+	var prevTra = function(node,callback){
+			//前序遍历的顺序就是根左右，所以先node.key、再node.left、最后node.right
+		if(!(node === null)){
+			callback(node.key);
+			prevTra(node.left,callback);
+			prevTra(node.right,callback);
+		}
+	};
+	// 遍历二叉树——中序遍历LDR
+	// 中序排序最后得到的结果是可以按照顺序排列的。
+	var centerTra = function(node,callback){
+			//中序遍历的顺序就是左根右，所以先node.left、再node.key、最后node.right
+		if(!(node === null)){
+			centerTra(node.left,callback);
+			callback(node.key);
+			centerTra(node.right,callback);
+		}
+	};
+	// 遍历二叉树——后序遍历LRD
+	var backTra = function(node,callback){
+			//后序遍历的顺序就是左右根，所以先node.left、再node.right、最后node.key
+		if(!(node === null)){
+			backTra(node.left,callback);
+			backTra(node.right,callback);
+			callback(node.key);
+		}
+	};
 }

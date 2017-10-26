@@ -77,14 +77,10 @@ input[type="button"]:focus {
 }
 
 
-.b1 {
-    width: 450px;
-}
-
 div {
     width: 50%;
     margin: 1px;
-    padding: 10px;
+    padding: 30px;
     border: 2px solid #666;
     display: -webkit-box;
     display: -ms-flexbox;
