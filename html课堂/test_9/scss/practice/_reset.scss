@@ -1,0 +1,53 @@
+body,input{
+	background: #fff;
+	@include txts(14px,#333,"微软雅黑")
+}
+body{
+	background: $bgColor;
+}
+ul,p{
+	padding: 0;
+	margin: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	color: #333;
+	text-decoration: none;
+}
+a:link,input:focus,textarea:focus,select:focus{
+	outline: none;
+}
+a:hover{
+	cursor: pointer;
+}
+input{
+	border: 0;
+}
+.clearfix{
+	*zoom:1;
+}
+.clearfix:after{
+	height: 0;
+	clear: both;
+	content: "";
+	visibility: hidden;
+	display: block;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.container{
+	width: 1280px;
+	min-width: 1280px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.icon{
+	display: inline-block;
+	_display: inline;
+}

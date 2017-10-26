@@ -1,0 +1,44 @@
+$txtColorPink: #cc8091;
+$borColor: #dedede;
+$txtColorRed: #d45d5c;
+$txtColorYel: #f5e327;
+$bgColor: #f5f5f5;
+$txtColorBlue: #11456b;
+$txtColorG2: #5a5b5b;
+$txtColorGray: #767777;
+$bdColor: #938e8c;
+@mixin wh($wid,$hei){
+	@if $wid {
+		width: $wid;
+	}
+	@if $hei {
+		height: $hei;
+	}
+	overflow: hidden;
+}
+@mixin txts($fs,$cl,$fm){
+	@if $fs {
+		font-size: $fs;
+	}
+	@if $cl {
+		color: $cl;
+	}
+	@if $fm {
+		font-family: $fm;
+	}
+}
+@mixin op($index){
+	opacity: $index;
+	filter: alpha(opacity = ($index * 100));
+}
+%fWtD{
+	font-weight: bold;
+	text-decoration: underline;
+}
+%fWtD_no{
+	font-weight: normal;
+	text-decoration: none;
+}
+%boxSd{
+	box-shadow: 2px 2px 3px 3px #ddd;
+}

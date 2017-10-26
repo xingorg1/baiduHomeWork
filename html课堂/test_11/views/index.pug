@@ -1,0 +1,349 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+		meta(name="viveport" content="width=device-width, initial-scale=1, user-scalable=0")
+		title 第十一期作业
+		link(rel="stylesheet", href="../css/style.css")
+		script(src="../js/jquery-1.10.2.min.js")
+		//- script(src="../js/idangerous.swiper.js")
+		//- script(src="../js/idangerous.swiper.scrollbar-2.1.js")
+		script(src="../js/common.js")
+		script.
+			(function(doc, win) {
+				var docEl = doc.documentElement,
+						resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+						recalc = function() {
+							var clientWidth = docEl.clientWidth;
+							if(clientWidth < 320) {
+								docEl.style.fontSize = 50 + 'px'
+							} else if(clientWidth > 640) {
+								docEl.style.fontSize = 100 + 'px'
+							} else {
+								docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+							}
+						};
+				recalc();
+				if(!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+			})(document, window);
+	body
+		.header
+			.container
+				a(href="javascript:;")
+					i.icon.icon-enter
+					| 返回
+				span 小石头的动漫城
+		.nav
+			ul.clearfix
+				li.cur: a(href="javascript:;") 首页
+				li: a(href="javascript:;") 商品
+				li: a(href="javascript:;") 荣誉
+				li: a(href="javascript:;") 企业
+				li: a(href="javascript:;") 关于
+		.swiper
+			a.swiper-left(href="javascript:;")
+			a.swiper-right(href="javascript:;")
+			ul.swiper-container.clearfix
+				li.cur: a(href="javascript:;")
+					img(src="../img/1.jpg", alt="焦点图")
+				li: a(href="javascript:;")
+					img(src="../img/2.jpg", alt="焦点图")
+				li: a(href="javascript:;")
+					img(src="../img/3.jpg", alt="焦点图")
+				li: a(href="javascript:;")
+					img(src="../img/4.jpg", alt="焦点图")
+				li: a(href="javascript:;")
+					img(src="../img/5.jpg", alt="焦点图")
+			.pagination
+				span
+					//- a.active.pagination-num(href="javascript:;")
+					//- a.pagination-num(href="javascript:;")
+					//- a.pagination-num(href="javascript:;")
+					//- a.pagination-num(href="javascript:;")
+					//- a.pagination-num(href="javascript:;")
+		.nav-tab.box
+			ul.clearfix
+				li
+					a(href="javascript:;") 
+						i.icon.icon-computer_fill
+						| 账户
+				li
+					a(href="javascript:;") 
+						i.icon.icon-createtask_fill
+						| 记录
+				li
+					a(href="javascript:;") 
+						i.icon.icon-integral_fill
+						| 收藏
+				li
+					a(href="javascript:;") 
+						i.icon.icon-manage_fill
+						| 管理
+				li
+					a(href="javascript:;") 
+						i.icon.icon-mine_fill
+						| 我的
+		.pic-box.box
+			ul.container
+				li
+					a(href="javascript:;")
+						span.pic-parent
+							img(src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505983450939&di=6785a3529c66f1a69bd51ea729b1c598&imgtype=0&src=http%3A%2F%2Fuploads.xuexila.com%2Fallimg%2F1701%2F907-1F1041A609-52.jpg", alt="")
+						h4 樱桃小丸子
+						span.pic-tit 打招呼的正面速写图
+				li
+					a(href="javascript:;")
+						span.pic-parent
+							img(src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505983563252&di=c627803512b635edb0bab0a02fca1d9e&imgtype=0&src=http%3A%2F%2Fi2.sanwen.net%2Fdoc%2F1608%2F703-160P3102620.jpg", alt="")
+						h4 奥特曼
+						span.pic-tit 经典姿势图
+				li
+					a(href="javascript:;")
+						span.pic-parent
+							img(src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505983508038&di=199ecff0f3d323718bc3cb294943b962&imgtype=0&src=http%3A%2F%2Fimg17.3lian.com%2Fd%2Ffile%2F201701%2F06%2F6706ddbfab3b39fef4d99fc1f34435ee.jpg", alt="")
+						h4 哆啦A梦
+						span.pic-tit 傻笑的哆啦A梦
+		.item-box.box
+			h3 卡通女头像
+			.item1.clearfix
+				span.fl
+					img(src="http://img1.imgtn.bdimg.com/it/u=2713835835,2151127112&fm=27&gp=0.jpg", alt="")
+				.item-cont.fr
+					.item1-box
+						a(href="javascript:;"): span 人物卡通形象
+						a(href="javascript:;"): span 卡通画人物
+					.item1-box2
+						a(href="javascript:;"): span 呆萌可爱卡通简笔画
+						a(href="javascript:;"): span 超呆萌可爱卡通图片
+			.item2.clearfix
+				span.fl
+					img(src="http://img4.imgtn.bdimg.com/it/u=4051778386,3418212808&fm=27&gp=0.jpg", alt="")
+				.item-cont.fr
+					.item1-box
+						a(href="javascript:;"): span 动漫卡通人物图片
+						a(href="javascript:;"): span 可爱萌卡通人物
+					.item1-box2
+						a(href="javascript:;"): span 人物图片素材
+						a(href="javascript:;"): span 唐老鸭卡通人物图片
+		.item-box.box
+			h3 卡通男头像
+			.item1.clearfix
+				span.fl
+					img(src="http://img0.imgtn.bdimg.com/it/u=1708687508,851657236&fm=27&gp=0.jpg", alt="")
+				.item-cont.fr
+					.item1-box
+						a(href="javascript:;"): span 卡通q版人物
+						a(href="javascript:;"): span 卡通小人物
+					.item1-box2
+						a(href="javascript:;"): span 人物卡通头像
+						a(href="javascript:;"): span 素描卡通人物
+			.item2.clearfix
+				span.fl
+					img(src="http://img3.imgtn.bdimg.com/it/u=528429777,2679620484&fm=27&gp=0.jpg", alt="")
+				.item-cont.fr
+					.item1-box
+						a(href="javascript:;"): span q版卡通人物
+						a(href="javascript:;"): span 漫画人物图片
+					.item1-box2
+						a(href="javascript:;"): span 卡通古代人物
+						a(href="javascript:;"): span 剪影
+		.article.box
+			.article-type1
+				.article-item.clearfix
+					.article-pic.fl
+						a(href="javascript:;")
+							img(src="http://img5.imgtn.bdimg.com/it/u=1872912241,2442248702&fm=27&gp=0.jpg", alt="")
+					.article-cont.fl
+						h4 动漫展2015年13月123日在京盛大开幕
+						.article-time 
+							span 腾讯新闻网
+							span 6个小时前
+				.article-item.clearfix
+					.article-pic.fl
+						a(href="javascript:;")
+							img(src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505993472195&di=eb339762b36fa49e1a61cdc786c859fe&imgtype=0&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fac4bd11373f08202a12757044afbfbedab641b50.jpg", alt="")
+					.article-cont.fl
+						h4 《名侦探柯南》终于迎来了大结局，柯南能否长大？
+						.article-time 
+							span 动漫新闻网
+							span 12个小时前
+			.article-type2
+				.article-cont
+					h4 《冰雪奇缘》再出年度大戏，姐妹反目终将开撕？
+					.article-pic
+						a(href="javascript:;")
+							img(src="http://f12.baidu.com/it/u=711522589,2112460504&fm=72", alt="")
+						a(href="javascript:;")
+							img(src="http://img4.imgtn.bdimg.com/it/u=3974079974,279535952&fm=27&gp=0.jpg", alt="")
+						a(href="javascript:;")
+							img(src="http://img1.imgtn.bdimg.com/it/u=759819857,542369288&fm=27&gp=0.jpg", alt="")
+					.article-time 
+						span vov中文网
+						span 一天前
+		.no-more
+			| 没有更多了。。。
+		//- ul.clearfix.icon-list
+		//- 		li
+		//- 			i.icon.icon-activity
+		//- 			p activity
+		//- 		li
+		//- 			i.icon.icon-activity_fill
+		//- 			p activity_fill
+		//- 		li
+		//- 			i.icon.icon-addressbook_fill
+		//- 			p addressbook_fill
+		//- 		li
+		//- 			i.icon.icon-addressbook
+		//- 			p addressbook
+		//- 		li
+		//- 			i.icon.icon-barrage_fill
+		//- 			p barrage_fill
+		//- 		li
+		//- 			i.icon.icon-barrage
+		//- 			p barrage
+		//- 		li
+		//- 			i.icon.icon-camera_fill
+		//- 			p camera_fill
+		//- 		li
+		//- 			i.icon.icon-camera
+		//- 			p camera
+		//- 		li
+		//- 			i.icon.icon-collection_fill
+		//- 			p collection_fill
+		//- 		li
+		//- 			i.icon.icon-collection
+		//- 			p collection
+		//- 		li
+		//- 			i.icon.icon-computer_fill
+		//- 			p computer_fill
+		//- 		li
+		//- 			i.icon.icon-computer
+		//- 			p computer
+		//- 		li
+		//- 			i.icon.icon-coupons_fill
+		//- 			p coupons_fill
+		//- 		li
+		//- 			i.icon.icon-coupons
+		//- 			p coupons
+		//- 		li
+		//- 			i.icon.icon-createtask_fill
+		//- 			p createtask_fill
+		//- 		li
+		//- 			i.icon.icon-createtask
+		//- 			p createtask
+		//- 		li
+		//- 			i.icon.icon-document
+		//- 			p document
+		//- 		li
+		//- 			i.icon.icon-document_fill
+		//- 			p document_fill
+		//- 		li
+		//- 			i.icon.icon-dynamic_fill
+		//- 			p dynamic_fill
+		//- 		li
+		//- 			i.icon.icon-dynamic
+		//- 			p dynamic
+		//- 		li
+		//- 			i.icon.icon-editor
+		//- 			p editor
+		//- 		li
+		//- 			i.icon.icon-enter
+		//- 			p enter
+		//- 		li
+		//- 			i.icon.icon-flag_fill
+		//- 			p flag_fill
+		//- 		li
+		//- 			i.icon.icon-flag
+		//- 			p flag
+		//- 		li
+		//- 			i.icon.icon-group
+		//- 			p group
+		//- 		li
+		//- 			i.icon.icon-group_fill
+		//- 			p group_fill
+		//- 		li
+		//- 			i.icon.icon-headlines_fill
+		//- 			p headlines_fill
+		//- 		li
+		//- 			i.icon.icon-headlines
+		//- 			p headlines
+		//- 		li
+		//- 			i.icon.icon-integral_fill
+		//- 			p integral_fill
+		//- 		li
+		//- 			i.icon.icon-integral
+		//- 			p integral
+		//- 		li
+		//- 			i.icon.icon-like_fill
+		//- 			p like_fill
+		//- 		li
+		//- 			i.icon.icon-like
+		//- 			p like
+		//- 		li
+		//- 			i.icon.icon-manage_fill
+		//- 			p manage_fill
+		//- 		li
+		//- 			i.icon.icon-manage
+		//- 			p manage
+		//- 		li
+		//- 			i.icon.icon-mine
+		//- 			p mine
+		//- 		li
+		//- 			i.icon.icon-mine_fill
+		//- 			p mine_fill
+		//- 		li
+		//- 			i.icon.icon-order_fill
+		//- 			p order_fill
+		//- 		li
+		//- 			i.icon.icon-order
+		//- 			p order
+		//- 		li
+		//- 			i.icon.icon-picture_fill
+		//- 			p picture_fill
+		//- 		li
+		//- 			i.icon.icon-picture
+		//- 			p picture
+		//- 		li
+		//- 			i.icon.icon-praise_fill
+		//- 			p praise_fill
+		//- 		li
+		//- 			i.icon.icon-praise
+		//- 			p praise
+		//- 		li
+		//- 			i.icon.icon-select_fill
+		//- 			p select_fill
+		//- 		li
+		//- 			i.icon.icon-select
+		//- 			p select
+		//- 		li
+		//- 			i.icon.icon-share_fill
+		//- 			p share_fill
+		//- 		li
+		//- 			i.icon.icon-share
+		//- 			p share
+		//- 		li
+		//- 			i.icon.icon-task
+		//- 			p task
+		//- 		li
+		//- 			i.icon.icon-task_fill
+		//- 			p task_fill
+		//- 		li
+		//- 			i.icon.icon-workbench_fill
+		//- 			p workbench_fill
+		//- 		li
+		//- 			i.icon.icon-workbench
+		//- 			p workbench
+		//- 		li
+		//- 			i.icon.icon-search
+		//- 			p search
+		//- 		li
+		//- 			i.icon.icon-searchfill
+		//- 			p searchfill
+		//- 		li
+		//- 			i.icon.icon-packup
+		//- 			p packup
+		//- 		li
+		//- 			i.icon.icon-unfold
+		//- 			p unfol

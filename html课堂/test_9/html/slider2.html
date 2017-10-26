@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css" media="screen">
+		body{
+			background: #ddd;
+			opacity: .8;
+		}
+		.sidebar-list {
+  			margin: 0 45px;
+		}
+
+		.sidebar-list a {
+		  font-size: 16px;
+		  color: #6e8095;
+		  font-family: "黑体";
+		}
+
+		.sidebar-list a:hover {
+		  color: #fff;
+		}
+
+		.sidebar-list .icon {
+		  margin-right: 5px;
+		}
+
+		.sidebar-list .sec-class-li {
+		  position: relative;
+		}
+
+		.sidebar-list .sec-class-li:after {
+		  content: "";
+		  position: absolute;
+		  z-index: 10;
+		}
+
+		.sidebar-list .sec-class-li:after {
+		  top: 21px;
+		  left: 0;
+		  width: 6px;
+		  height: 6px;
+		  overflow: hidden;
+		  border-right: 1px solid #6e8095;
+		  border-bottom: 1px solid #6e8095;
+		  -webkit-transform: rotate(-45deg);
+		  -moz-transform: rotate(-45deg);
+		  -ms-transform: rotate(-45deg);
+		  transform: rotate(-45deg);
+		  -webkit-transition: transform 0.5s;
+		  -moz-transition: transform 0.5s;
+		  -ms-transition: transform 0.5s;
+		  transition: transform 0.5s;
+		}
+
+		.sidebar-list .sec-class-li.cur:after {
+		  top: 19px;
+		  border-right: 1px solid #fff;
+		  border-bottom: 1px solid #fff;
+		  -webkit-transform: rotate(45deg);
+		  -moz-transform: rotate(45deg);
+		  -ms-transform: rotate(45deg);
+		  transform: rotate(45deg);
+		  -webkit-transition: transform 0.5s;
+		  -moz-transition: transform 0.5s;
+		  -ms-transition: transform 0.5s;
+		  transition: transform 0.5s;
+		}
+
+		.cur > a {
+		  color: #fff;
+		}
+
+		.red > a {
+		  color: red;
+		}
+
+		.first-class li {
+		  padding-top: 15px;
+		  /*增加*/
+		  height: 22px;
+		  overflow:hidden;
+		}
+
+		.sec-class, .thr-class {
+		   /*去除*/
+		  /*display: none;*/
+		  margin-left: 22px;
+		  font-size: 14px;
+		}
+
+		.sec-class > li {
+		  padding-left: 12px;
+		}
+
+		.sec-class > li:hover {
+		  color: #fff;
+		}
+		
+		/*增加*/
+		.first-class .cur{
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="sidebar-list">
+      <ul class="first-class">
+        <li class="first-class-li"><a href="javascript:;"><i class="icon icon-activity"></i>个人报表</a>
+          <ul class="sec-class" >
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-order"></i>今日报表</a>
+              <ul class="thr-class" >
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表标题</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表内容</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表审核</a></li>
+              </ul>
+            </li>
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-order"></i>历史报表</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表标题</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表内容</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表审核</a></li>
+              </ul>
+            </li>
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-order"></i>计划报表</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表标题</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表内容</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-document"></i>报表审核</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="first-class-li"><a href="javascript:;"><i class="icon icon-collection"></i>个人收藏</a>
+          <ul class="sec-class">
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-select"></i>报表收藏</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏链接</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏标题</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏内容</a></li>
+              </ul>
+            </li>
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-select"></i>图片收藏</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏链接</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏标题</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏内容</a></li>
+              </ul>
+            </li>
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-select"></i>账户收藏</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏链接</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏标题</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-like"></i>收藏内容</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="first-class-li"><a href="javascript:;"><i class="icon icon-share"></i>我的分享</a>
+          <ul class="sec-class">
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-praise"></i>朋友圈分享</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-task"></i>报表分享</a></li>
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-picture"></i>图片分享</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="first-class-li"><a href="javascript:;"><i class="icon icon-picture"></i>图库</a>
+          <ul class="sec-class">
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-computer"></i>本机</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-camera"></i>相机照片</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="first-class-li"><a href="javascript:;"><i class="icon icon-dynamic"></i>成长记录</a>
+          <ul class="sec-class">
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-barrage"></i>历史记录</a>
+            </li>
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-createtask"></i>任务记录</a>
+            </li>
+          </ul>
+        </li>
+        <li class="first-class-li"><a href="javascript:;"><i class="icon icon-coupons"></i>账户信息</a>
+          <ul class="sec-class">
+            <li class="sec-class-li"><a href="javascript:;"><i class="icon icon-workbench"></i>客户端信息</a>
+              <ul class="thr-class">
+                <li class="thr-class-li"><a href="javascript:;"><i class="icon icon-editor"></i>修改信息</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+    <script>
+    	$(function(){
+
+    		$('.first-class>li').on("click",function(e){
+    			var obj=e.target.parentElement;
+    			$(e.target.parentElement).toggleClass('cur').siblings().removeClass('cur');
+    		});
+
+    	})
+    </script>
+</body>
+</html>

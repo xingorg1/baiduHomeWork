@@ -1,0 +1,32 @@
+doctype
+html
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no")
+		title 第八期-响应式布局作业
+		link(rel="stylesheet", href="../css/style.css")
+		script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
+		//- Pug 没有特殊的语法来表示条件注释（conditional comments）（像针对ie这种一样）。不过因为所有以 < 开头的行都会被当作纯文本，因此直接写一个 HTML 风格的条件注释也是没问题的
+		<!--[if lt IE 9]><script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+	body
+		.row
+			.col-md-4.col-sm-6 4-6
+			.col-md-4.col-sm-6 4-6
+			.col-md-4.col-sm-12 4-12
+		.row
+			.col-md-3.col-sm-3 3-3
+			.col-md-6.col-sm-6 6-6
+			.col-md-3.col-sm-3 3-3
+		.row
+			.col-md-1.col-sm-2 1-2
+			.col-md-1.col-sm-2 1-2
+			.col-md-2.col-sm-8 2-8
+			.col-md-2.col-sm-3 2-3
+			.col-md-6.col-sm-3 6-3
+		.row-box
+			- for (var i = 1; i <= 12; i++)
+				div(class='col-md-'+i) col-md-#{i}
+				//- 注意，for循环的括号中，每一句条件之后用的都是分号，不是逗号。
+		li 小技巧：
+		p 这是一段标签#[strong 嵌入]文本，#[b 文本内部标签]用"\#[]"来实现,里边放标签，空一格放文本

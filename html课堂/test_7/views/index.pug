@@ -1,0 +1,177 @@
+doctype
+html
+	head
+		meta(charset="utf-8")
+		title 第七期-产品官网
+		link(rel="stylesheet", href="../css/style.css")
+		script(src="http://www.jq22.com/jquery/jquery-2.1.1.js")
+		script(src="../js/common.js")
+	body
+		.header
+			.container.clearfix
+				.logo.fl
+					i.icon.icon-logo
+					span.logo-name 鋒@丫头
+				ul.nav.fr
+					-var navArr = [{className: "cur",txt: "首页"},{txt: "最新活动"},{txt: "项目介绍"},{txt: "爱心社区"},{txt: "关于我们"}]
+					each item in navArr
+						li(class= item.className)
+							a(href="javascript:;") #{item.txt}
+					li
+						a.nav-user(href="javascript:;") 
+							i.icon.icon-user
+							span.nav-login 登录
+		.banner
+			.container
+				.greeting
+					span.txt1 Time of new life<br>
+					span.txt2 新时代，年轻的人们让我们一起<br>体验新生活，享受新生活<br>
+					input.btn-start(type="submit" value="开始体验") 
+		// 优势
+		.advanta
+			.container
+				ul.clearfix
+					-var advanta = [{iconName: "icon-circle",iconTxt: "打造全新世界观，让你更爱你的生活"},{iconName: "icon-flag",iconTxt: "丰富多彩的公益活动，发挥新世界的主人公意识"},{iconName: "icon-flower",iconTxt: "时尚的新理念，超前体验未知的生活"},{iconName: "icon-diam",iconTxt: "完善的培养机制，培养你全新的世界观"}]
+					each item in advanta
+						li
+							div.advant-icon: i.icon(class= item.iconName)
+							div.advant-txt
+								span #{item.iconTxt}
+		// 询问
+		.ask
+			.container
+				.ask-logo
+					i.icon.logo-big
+				.ask-txt
+					span 关于新世界，你不知道的还有什么？
+		// 查找
+		.search
+			.container
+				.search-txt
+					p 查找新世界城市活动信息
+					span
+					p.search-info 每个城市的有不同的活动信息，请自主查询您所需要了解的城市
+				//- form.search-box.clearfix
+				//- 	-var formArr = [{value: "-1",tit: "中国",txt:["美国","英国","澳大利亚"]},{value: "-1",tit: "省份",txt:["北京","河北","河南","湖北","湖南","河北","河南","湖北","湖南"]},{value: "-1",tit: "城市",txt:["西城","东城","朝阳","海淀"]}]
+				//- 	each item in formArr
+				//- 		select
+				//- 			option(value= item.value) #{item.tit}
+				//- 			each i in item.txt
+				//- 				option #{i}
+				//- 	input.btn-search(type="submit" value="搜索")
+				ul.search-form-box.clearfix
+					-var formArr = [{value: "-1",tit: "中国",txt:["美国","英国","澳大利亚"]},{value: "-1",tit: "省份",txt:["北京","河北","河南","湖北","湖南","河北","河南","湖北","湖南"]},{value: "-1",tit: "城市",txt:["西城","东城","朝阳","海淀"]}]
+					each item in formArr
+						li
+							select
+								option(value= item.value) #{item.tit}
+								each i in item.txt
+									option #{i}
+					input.btn-search(type="submit" value="搜索")
+		// 展示
+		.show
+			.container
+				ul.clearfix
+					li
+						.show-img-box
+							img(src="../img/pic1.jpg", alt="")
+						.show-txt
+							span.show-txt-tit 北京活动
+							span 新社区大联盟
+					li
+						.show-txt
+							span.show-txt-tit.show-txt-tit2 上 海 活 动
+							span.show-txt-info 夜上海新景观探索
+						.show-img-box
+							img(src="../img/pic2.jpg", alt="")
+					-var showArr = [{url: "pic3.jpg",title:"深圳活动",info:"全新海岸线观点站"},{url: "pic4.jpg",title:"香港活动",info:"奢侈消费大派送"}]
+					each item in showArr
+						li
+							.show-img-box
+								img(src="../img/"+ item.url, alt="")
+							.show-txt
+								span.show-txt-tit #{item.title}
+								span #{item.info}
+		//关于
+		.about
+			.container
+				.about-our
+					ul.clearfix
+						-var aboutArr = [{className:"",ch:"新世界",en:"TIME",ad:"@新世界 - 北京",time:"2017.09.08",tit:"新世界/",num:"01",txt:"石头，一般指由大岩体遇外力而脱落下来的小型岩体，多依附于大岩体表面，一般成块状或椭圆形，外表有的粗糙，有的光滑，质地坚固、脆硬。可用来制造石器，采集石矿。在几千年前，我们的祖先就是用石头来生火。石头一般由碳酸钙和二氧化硅组成。"},{className:"our-img-box2",ch:"小石头",en:"ROCK",ad:"@小石头 - 北京",time:"2017.07.11",tit:"小石头/",num:"02",txt:"石头，一般指由大岩体遇外力而脱落下来的小型岩体，多依附于大岩体表面，一般成块状或椭圆形，外表有的粗糙，有的光滑，质地坚固、脆硬。可用来制造石器，采集石矿。在几千年前，我们的祖先就是用石头来生火。石头一般由碳酸钙和二氧化硅组成。"},{className:"our-img-box3",ch:"鋒@丫头",en:"FENG",ad:"鋒@丫头 - 石家庄",time:"2017.09.09",tit:"鋒@丫头/",num:"03",txt:"石头，一般指由大岩体遇外力而脱落下来的小型岩体，多依附于大岩体表面，一般成块状或椭圆形，外表有的粗糙，有的光滑，质地坚固、脆硬。可用来制造石器，采集石矿。在几千年前，我们的祖先就是用石头来生火。石头一般由碳酸钙和二氧化硅组成。"}]
+						each item in aboutArr
+							li
+								.our-img-box(class= item.className).fl
+									.our-img-alt
+										span.alt-ch #{item.ch}<br>
+										span.alt-en #{item.en}<br>
+										span.alt-ad #{item.ad}<br>#{item.time}
+								.our-txt-box.fr
+									.our-txt-tit #{item.tit}
+										span #{item.num}
+									p #{item.txt}
+									a.btn-more(type="button") 更多详情
+					.about-num
+						span.cur
+						span
+						span
+				.about-more.clearfix
+					ul.about-more-txt.fl.clearfix
+						li.red.fl
+							.more-txt-tit 新时代<br>关于爱生活的我们
+								span
+							a.btn-more.about-more-btn 查看更多
+						li.fl
+							.more-txt-tit 新时代<br>关于爱生活的我们
+								span
+							a.btn-more.about-more-btn 查看更多
+					.about-more-img.fr
+		//加入
+		.add
+			.container
+				.add-tit
+					span.add-tit-txt 成为我们的志愿者
+					span.underline
+					span.add-tit-info 新世界的大家庭需要每一个爱生活的人的加入，如果你够年轻，有梦想，有激情那就不要犹豫，快来加入我们，成为改变所有人生活的人 
+				.add-cont.clearfix
+					ul.add-condition.fl
+						li
+							span 新世界志愿者协议 
+							p 加入新世界志愿者的人员必须遵守中华人民共共和国的相关法律法规，并且本着平等资源的原则 ......
+							a more
+						li
+							span 新世界志愿者权利 
+							p 新世界志愿者享受新世界内部所有资源共享的权利，并且享受所在四新世界活动的优先参与资格
+							a more
+						li
+							span 更多条款 
+							a more
+					.add-form.fr
+						.add-form-row.clearfix
+							input.fl(type="text" placeholder="姓名:")
+							input.fr(type="text" placeholder="年龄:")
+						.add-form-row.clearfix
+							input.fl(type="text" placeholder="联系方式:")
+							input.fr(type="text" placeholder="联系地址:")
+						.add-form-row
+							textarea(placeholder="请简单描述你的理想生活")
+						.add-form-row
+							input(type="button" value="提交申请")
+		//脚注
+		.footer
+			.container
+				.footer-txt
+					span.footer-txt-tit 联系我们
+					p.footer-txt-info 为了更好的获取我们最新的产品资讯，您可以留下您的电子邮箱快速订阅我们的产品资讯也可以通过以下任何方式关注我们动态
+				.footer-search
+					span.clearfix
+						input(type="text" placeholder="someone@email.com")
+						input.footer-btn-submit(type="submit" value="提交")
+				ul.footer-icon.clearfix
+					li: a(href="javascript:;"): i.icon.icon-qq
+					li: a(href="javascript:;"): i.icon.icon-weibo
+					li: a(href="javascript:;"): i.icon.icon-twitter
+					li: a(href="javascript:;"): i.icon.icon-earth
+		.copyright
+			.container.clearfix
+				span.fl xing.org1^
+				span.fr http://www.cnblogs.com/padding1015/

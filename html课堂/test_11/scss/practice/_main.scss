@@ -1,0 +1,299 @@
+// test_11.css
+html{
+	font-size: 62.5%;
+	background: $bgClr;
+}
+
+.header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	color: #fff;
+	font-size: 0.32rem;
+	background: $mainClr;
+	.icon-enter{
+		font-size: 0.32rem;
+		@include transForm(rotate(180deg))
+	}
+	.container{
+		padding: 0.1rem 0;
+		text-align: center;
+	}
+	a{
+		color: #fff;
+		float: left;
+	}
+}
+.nav{
+	margin-top: .62rem;
+	background: #fff;
+	font-size: 0.32rem;
+	li{
+		float: left;
+		width: 20%;
+		text-align: center;
+		padding: .2rem 0;
+	}
+	a{color: $txtClr;}
+	.cur,li:hover{
+		border-bottom: .04rem solid $mainClr;
+		a{
+			color: $hoverClr;
+		}
+	}
+}
+
+.swiper{
+	position: relative;
+	// @include wh(100%,3rem)
+}
+.swiper-right,.swiper-left{
+	background: rgba(255,255,255,.35) url(../img/arrows.png) no-repeat center -58px;
+  position: absolute;
+  right: .2rem;
+  top: 50%;
+  margin-top: -0.25rem;
+ 	@include wh(.5rem,.5rem)
+  z-index: 999;
+  text-align: center;
+  background-size: 50%;
+  @include radiu(50%)
+  padding: .1rem;
+  border: .03rem solid rgba(255,255,255,.75);
+}
+.swiper-left {
+	background: rgba(255,255,255,.35) url(../img/arrows.png) no-repeat center 6px;
+	background-size: 50%;
+	left: .2rem;
+}
+.swiper-container{
+	li{
+		display: none;
+		@include op(0)
+		-webkit-transition: all 1s;
+		transition: all 1s;
+	}
+	.cur,a{
+		display: block;
+		@include op(1)
+		-webkit-transition: all 1s;
+		transition: all 1s;
+	}
+	img{
+		width: 100%;
+	}
+}
+.pagination{
+	@include wh(100%,.3rem)
+	position: absolute;
+	bottom: .1rem;
+	left: 0;
+	text-align: center;
+}
+.pagination-num{
+	@include wh(.2rem,.2rem)
+	display: inline-block;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border: .02rem solid rgba(255,255,255,.65);
+	margin-right: .3rem;
+}
+.active,.pagination-num:hover{
+		background: rgba(255,255,255,.5);
+}
+.box{
+	background: #fff;
+}
+.nav-tab{
+	padding-bottom: .1rem;
+	.icon{
+		@include wh(.65rem,.65rem)
+		font-size: .6rem;
+  	padding: .1rem;
+		margin-bottom: .1rem;
+  	color: #fff;
+  	background: $mainClr;
+  	@include radiu(50%)
+	}
+	li{
+		float: left;
+		width: 20%;
+		padding: .35rem 0;
+		text-align: center;
+		i,a{
+			display: block;
+			margin: 0 auto;
+		}
+		a{
+			font-size: .24rem;
+		}
+	}
+}
+
+
+.pic-box{
+	margin-bottom: .25rem;
+	.container{
+		border-top: .03rem solid $borClr;
+		padding: .35rem 0;
+		// margin-left: -.22rem;
+	}
+	ul,.pic-parent{
+		@include flexbox(space-between,center)
+	}
+	li{
+		padding: 0 .5rem;
+		border-right: .03rem solid $borClr;
+    margin-right: .32rem;
+	}
+	li:last-child{
+		border-color: #fff;
+	}
+	a{
+		display: block;
+		text-align: center;
+	}
+	.pic-parent{
+		justify-content: center;
+		height: 2.3rem;
+	}
+	img{
+		@include wh(1.9rem,auto)
+	}
+	h4{
+		margin: .1rem 0 .05rem;
+		font-size: .24rem;
+	}
+	.pic-tit{
+		font-size: .18rem;
+		color: $txtClr;
+	}
+}
+.item-box{
+	margin-bottom: .25rem;
+	padding: .2rem;
+	h3{
+		font-size: .32rem;
+		margin-top: 0;
+		padding-bottom: .2rem;
+		border-bottom: .03rem solid $borClr;
+	}
+	.item1,.item2{
+	}
+	.item2{
+		margin-top: .2rem;
+	}
+	span{
+		display: block;
+		border: .03rem solid $mainClr;
+	}
+	img{
+		@include wh(2.5rem,2.5rem)
+	}
+	.item-cont{
+		width: 6.6rem;
+		margin-left: .2rem;
+	}
+	.item1-box,.item1-box2{
+		@include flexbox(space-between,space-between)
+	}
+	.item1-box2{
+		margin-top: .2rem
+	}
+	a{
+    display: block;
+    @include wh(41%,.79rem)
+    line-height: .79rem;
+    padding: .2rem .25rem;
+    font-size: .24rem;
+    text-align: center;
+    background: $bgClr;
+    span{
+    	display: inline;
+    	border: none;
+    }
+    &:hover{
+    	color: $hoverClr;
+    	background: #efefef;
+    }
+	}
+}
+
+.article{
+	padding: .2rem;
+}
+.article-pic{
+	margin-right: .2rem;
+	a{
+		display: inline-block;
+		border: .03rem solid $mainClr;
+		img{
+			@include wh(3rem,1.5rem)
+		}
+	}
+}
+.article-item{
+	padding: .2rem 0;
+	margin-bottom: .2rem;
+	border-bottom: .03rem solid $bgClr;
+	span{
+		margin-right: .1rem;
+	}
+}
+
+.article-cont{
+	color: $txtClr;
+	width: 6rem;
+	h4{
+		font-size: .32rem;
+		margin-top: 0;
+	}
+	.article-time{
+		font-size: .24rem;
+		color: $borClr;
+	}
+}
+.article-type2{
+	.article-pic{
+		margin-right: 0;
+		@include flexbox(space-between,center)
+	}
+	.article-cont{
+		width: 100%;
+	}
+	.article-time {
+		margin-top: .1rem;
+	}
+}
+.no-more{
+  padding: .2rem;
+  color: #dedede;
+  background: #fff;
+  font-size: .22rem;
+  text-align: center;
+  border-top: 1px solid $borClr;
+}
+
+
+
+
+
+
+
+
+
+.icon-list{
+	background: $mainClr;
+	color: #0e196b;
+	li{
+		float: left;
+		margin: 10px;
+		text-align: center;
+		i{
+		display: inline-block;
+		font-size: 48px;
+		}
+	}
+}

@@ -1,0 +1,34 @@
+body,html{
+	background: $bgColor;
+}
+ul{
+	padding: 0;
+	margin: 0;
+}
+li{
+	list-style: none;
+}
+.clearfix{
+	*zoom:1;
+}
+.clearfix:after{
+	height: 0;
+	clear: both;
+	content: "";
+	visibility: hidden;
+	display: block;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.container{
+	width: 980px;
+	min-width: 980px;
+	margin: 0 auto;
+	padding: 20px;
+	background: white;
+	@extend %boxSd;
+}

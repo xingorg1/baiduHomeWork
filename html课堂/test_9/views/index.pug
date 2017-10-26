@@ -1,0 +1,229 @@
+doctype
+html
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		meta(name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no")
+		title 第九期-复杂布局练习
+		link(rel="stylesheet", href="../css/style.css")
+	body
+		.header
+			.container.clearfix
+				.logo.fl
+					img(src="../img/icon-logo.png", alt="")
+				.login.fr
+					span.search
+						input.ipt-search(type="text")
+					a.user
+						i.icon.icon-user
+						span 登录
+		.container.clearfix
+			.sidebar-box
+				.sidebar-user
+					.user-head-box
+						span.user-img: img(src="../img/user-head.jpg", alt="")
+						span.user-name xing.org1^
+					.user-info.clearfix
+						//- 居中搞不掉
+						span.user-coll
+							b 110 <br>
+							| 收藏
+						span.user-fans
+							b 313 <br>
+							| 粉丝
+				//- 20170912-17:07开始制作侧边栏
+				.sidebar-list
+					ul.first-class
+						-var firstClass =[{dis:"display:block",cls:"cur",iconClass:"icon-activity",title:"个人报表",secClass:[{dis:"display:block",cls:"cur",iconClass:"icon-order",title:"今日报表",thrClass:[{iconClass:"icon-document",title:"报表标题"},{cls:"cur",iconClass:"icon-document",title:"报表内容"},{iconClass:"icon-document",title:"报表审核"}]},{iconClass:"icon-order",title:"历史报表",thrClass:[{iconClass:"icon-document",title:"报表标题"},{iconClass:"icon-document",title:"报表内容"},{iconClass:"icon-document",title:"报表审核"}]},{iconClass:"icon-order",title:"计划报表",thrClass:[{iconClass:"icon-document",title:"报表标题"},{iconClass:"icon-document",title:"报表内容"},{iconClass:"icon-document",title:"报表审核"}]}]},{iconClass:"icon-collection",title:"个人收藏",secClass:[{iconClass:"icon-select",title:"报表收藏",thrClass:[{iconClass:"icon-like",title:"收藏链接"},{iconClass:"icon-like",title:"收藏标题"},{iconClass:"icon-like",title:"收藏内容"}]},{iconClass:"icon-select",title:"图片收藏",thrClass:[{iconClass:"icon-like",title:"收藏链接"},{iconClass:"icon-like",title:"收藏标题"},{iconClass:"icon-like",title:"收藏内容"}]},{iconClass:"icon-select",title:"账户收藏",thrClass:[{iconClass:"icon-like",title:"收藏链接"},{iconClass:"icon-like",title:"收藏标题"},{iconClass:"icon-like",title:"收藏内容"}]}]},{iconClass:"icon-share",title:"我的分享",secClass:[{iconClass:"icon-praise",title:"朋友圈分享",thrClass:[{iconClass:"icon-task",title:"报表分享"},{iconClass:"icon-picture",title:"图片分享"}]}]},{iconClass:"icon-picture",title:"图库",secClass:[{iconClass:"icon-computer",title:"本机",thrClass:[{iconClass:"icon-camera",title:"相机照片"}]}]},{iconClass:"icon-dynamic",title:"成长记录",secClass:[{iconClass:"icon-barrage",title:"历史记录"},{iconClass:"icon-createtask",title:"任务记录"}]},{iconClass:"icon-coupons",title:"账户信息",secClass:[{iconClass:"icon-workbench",title:"客户端信息",thrClass:[{iconClass:"icon-editor",title:"修改信息"}]}]}]
+						each item in firstClass
+							li.first-class-li(class= item.cls)
+								a(href="javascript:;")
+									i.icon(class= item.iconClass)
+									| #{item.title}
+								ul.sec-class(style= item.dis)
+									each x in item.secClass
+										li.sec-class-li(class= x.cls)
+											a(href="javascript:;")
+												i.icon(class= x.iconClass)
+												| #{x.title}
+											if x.thrClass
+												ul.thr-class(style= x.dis)
+													each y in x.thrClass
+														li.thr-class-li(class= y.cls)
+															a(href="javascript:;")
+																i.icon(class= y.iconClass)
+																| #{y.title}
+			.content
+				ul.nav
+					-var navArr = [{link: "javascript:;",title: "首页"},{link: "javascript:;",title: "个人报表"},{link: "javascript:;",title: "报表标题"},{className: "cur",link: "javascript:;",title: "报表内容"}]
+					each item in navArr
+						li: a(href= item.link class= item.className) #{item.title}
+				.main
+					form.sec.sec1.clearfix
+						.col.col1
+							label(for="") 查询项
+							select.argument
+								option 第一项
+								option 第二项
+								option 第三项
+						.col.col2.clearfix
+							.row-box.fl
+								.row
+									label(for="") 买方
+									input(type="text" value="小A" placeholder="小A")
+								div
+									label(for="") 卖方
+									input(type="text" value="小B" placeholder="小B")
+							.row-box.fl.change-row
+								img(src="../img/change.png", alt="")
+								span 换
+						.col.col3
+							.row
+								label(for="") 日期
+								input.input-margin-r(type="text" value="2016-04-01" placeholder="2016-04-01")
+								label(for="") 总耗时
+								select.select1
+									option 第一项
+									option 第二项
+									option 第三项
+							div
+								label(for="") 人数
+								select.input-margin-r.select2
+									option 10人
+									option 20人
+									option 30人
+								label(for="") 成交项
+								select.select3
+									option 10项
+									option 20项
+									option 30项
+									option 40项
+						.col.col4
+							input(type="submit" value="搜索")
+					.sec.sec2
+						span.prev-arrow <
+						span.history-list.clearfix
+							-var hisArr = [["10:00 am","1200","cur"],["11:00 am","1300"],["12:00 am","1200"],["01:00 pm","1400"],["02:00 pm","1500"],["03:00 pm","1800"]]
+							each item in hisArr
+								a(href="javascript:;" class= item[2])
+									em.list-time #{item[0]}
+									b ￥
+										em #{item[1]}
+						span.next-arrow >
+						span.history-btn
+							i.icon.icon-date
+							| 历史查询
+					.sec.sec3
+						h4 2017年918制作
+						ul
+							-var sec3Arr = [["clr-green","122211","成交量"],["clr-blue","122211","成交量"],["clr-red","122211","成交量"],["clr-yellow","122211","成交量"]]
+							each item in sec3Arr
+								li.clearfix(class= item[0])
+									span.fl
+										b #{item[1]}
+										| #{item[2]}
+									a.fr
+										em
+					.sec.sec4.clearfix
+						.item1.fl
+							h4 第一组项目
+							.item1-cont-box
+								ul.clearfix
+									-var item1Arr = [["一","cur"],["二"],["三"],["四"],["五"]]
+									each item in item1Arr
+										li.fl(class= item[1])
+											a(href="javascript:;") 项目#{item[0]}
+								.item1-cont
+									-var tableArr1 = [["","一"],["hide","二"],["hide","三"],["hide","四"],["hide","五"]]
+										each x in tableArr1
+											table(class = x[0])
+												thead
+													tr
+														td(colspan="4") #{x[1]}
+												-var tableArr2 = [["购买材料一","购买材料一","购买材料一","购买材料一"],["购买材料四","购买材料四","购买材料四","购买材料四"],["购买材料八","购买材料八","购买材料八","购买材料八"],["购买材料十六","购买材料十六","购买材料十六","购买材料十六"],["购买材料二十","购买材料二十","购买材料二十","购买材料二十"]]
+												each item in tableArr2
+													tr
+														td #{item[0]}
+														td #{item[1]}
+														td #{item[2]}
+														td #{item[3]}
+						.item2.fr
+							h4 第二组项目
+							.item2-cont-box
+								.item2-row
+									.item2-tit 标题
+									.item2-content 项目报表三
+								.item2-row.clearfix
+									.fl.fl1
+										.item2-tit 价格
+										.item2-content ￥ 158
+									.fl.fl2
+										.item2-tit 负责人
+										.item2-content 小A
+								.item2-row
+									.item2-tit 详细描述
+									.item2-content 该项目的负责人是.......
+							.item2-form.clearfix
+								span.fl
+									input(type="checkbox" id="cd")
+									//替换默认样式，利用label点击选中checkbox的功能，让label做复选框的替身
+									label.substitute(for="cd") 
+									label.substitute-txt(for="cd") 遵守保密协议<br>
+								span.fr
+									input.item2-btn(type="submit" value="搜索")
+					.sec.sec5.clearfix
+						.item1.fl
+							h4 日历
+							.calendar
+								.calendar-tit
+									select.calendar-year
+										option 2017年
+										option 2016年
+										option 2015年
+										option 2014年
+										option 2013年
+									select.calendar-mouth
+										option 1月
+										option 2月
+										option 3月
+									select.calendar-day
+										option 标注日期
+										option 3号
+									input(type="button" value="返回今天")
+								.calendar-table
+									table(border="0")
+										thead 
+											tr
+												-var calendarArr1 = ["一","二","三","四","五","六","日"]
+												each item in calendarArr1
+													th #{item}
+										tbody
+											-var calendarArr2 = [[["","","",""],["","","",""],["","","",""],["","","",""],["1","black","愚人节","red"],["2","red","廿五","black"],["3","red","廿六","black"]],[["4","black","廿七","black"],["5","black","清明","red"],["6","black","廿九","black"],["7","black","三月","black"],["8","black","初二","black"],["9","red","初三","black"],["10","red","初四","black"]],[["11","black","初五","black"],["12","black","初六","black"],["13","black","初七","black"],["14","black","初八","black"],["15","black","初九","black"],["16","red","初十","black"],["17","red","十一","black"]],[["18","black","十二","black"],["19","black","十三","black"],["20","black","十四","black"],["21","black","十五","black"],["22","black","十六","black"],["23","red","十七","black"],["24","red","十八","black"]],[["25","black","十九","black"],["26","black","廿十","black"],["27","black","廿一","black"],["28","black","廿二","black"],["29","black","廿三","black"],["30","red","廿四","black"],["","","",""]]];
+											each item in calendarArr2
+												tr
+													each x in item
+														td.td
+															span(class= x[1]) #{x[0]}
+															span(class= x[3]) #{x[2]}
+						.item2.fr
+							h4 汽车行业品牌榜
+							.rank-cont
+								table
+									thead
+										tr
+											th 排名
+											th 品牌
+											th.search-index 搜索指数
+									tbody
+										-var rankArr = [["1","大众","48912001","pro-red","width:94%"],["2","丰田","29307333","pro-orange","width:87%"],["3","奥迪","23139070","pro-yellow","width:80%"],["4","本田","22885564","pro-green","width:70%"],["5","福特","22324792","pro-green","width:60%"],["6","宝马","21444077","pro-green","width:50%"],["7","现代","20114969","pro-green","width:40%"],["8","起亚","19251680","pro-green","width:30%"],["9","奔驰","19172837","pro-green","width:20%"],["10","别克","18544027","pro-green","width:10%"]]
+										each item in rankArr
+											tr
+												td #{item[0]}
+												td #{item[1]}
+												td
+													span.rank-num #{item[2]}
+													span.rank-progress
+														em.pro-length(class= item[3],style= item[4])
+
+	script(src="http://www.jq22.com/jquery/jquery-1.10.2.js")
+	script(src="../js/common.js")

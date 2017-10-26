@@ -1,0 +1,331 @@
+//.block{
+// 	@include texts(12px,false,"微软雅黑");
+//}
+// header
+.header{
+	@include wh(890px,60px);
+	margin: 0 auto;
+	border-bottom: 2px solid $bdColor;
+}
+.head-logo{
+	position: relative;
+	@include wh(110px,60px);
+	@include txts(12px,white,"黑体");
+	text-align: center;
+	background: #d55d5c;
+	span{
+		position: absolute;
+		bottom: 5px;
+    left: 5px;
+	}
+}
+.head-time{
+	@include txts(12px,$txtColorRed,"黑体");
+	padding-top: 42px;
+}
+.footer{
+	@include wh(890px,20px);
+	margin: 0 auto;
+	text-align: right;
+	border-top: 1px solid $bdColor;
+	span{
+		@include txts(12px,$txtColorRed,"黑体");
+	}
+}
+.content{
+	@include wh(890px,auto);
+	margin: 10px auto;
+	padding: 25px 0 35px;
+}
+// .cont
+.banner{
+	position: relative;
+	@include wh(641px,301px);
+	background: $bgColor url("../img/banner.jpg") no-repeat;
+	span{
+		position: absolute;
+		top: 0;
+		@include wh(191px,301px);
+		z-index: 9;
+		@include op(0.5);
+	}
+	.mask-1{
+		background: #fcc;
+		right: 0;
+	}
+	.mask-2{
+		left: 0;
+		background: #a5ffeb;
+	}
+}
+.banner-info{
+	position: relative;
+	@include wh(203px,301px);
+	border-top: 2px solid #cc8091;
+}
+
+.banner-txt1{
+	padding-top:20px;
+}
+.txt1{
+	@include txts(18px,black,"微软雅黑");
+	line-height: 28px;
+	border-bottom: 2px solid black;
+	b{
+		font-size: 28px;
+		@extend %fWtD_no;
+	}
+}
+.txt2{
+	@include txts(12px,#676767,"楷体");
+	line-height: 10px;
+}
+.banner-txt2{
+	height: 115px;
+	margin-top: 5px;
+	@include txts(116px,#75b86b,serif);
+	font-style: oblique;
+	span{
+		margin-left: -20px;
+		height: 100px;
+    display: block;
+    margin-top: -10px;
+	}
+}
+.banner-txt3{
+   	position: absolute;
+   	bottom: -10px;
+   	left: 0;
+}
+.txt3{
+	@include txts(55px,$txtColorPink,"微软雅黑");
+}
+.txt-box{
+	padding-top: 14px;
+	padding-top: 0\9;
+	margin-top: 8px\9;
+}
+.txt4{
+	@include txts(21px,$txtColorPink,"微软雅黑");
+
+}
+.txt5{
+	line-height: 12px\9;
+	font-style: normal;
+	@include txts(12px,#9b9b9b,"微软雅黑");
+}
+.news-box{
+	.news{
+		width: 641px;
+		margin-top: 30px;
+		overflow: hidden;
+	}
+	li{
+		float: left;
+		margin-right: 17px;
+		span{
+			font-family: "微软雅黑";
+			font-size: 16px;
+			@extend %fWtD;
+		}
+		p,.news-list{
+			@include txts(12px,#231815,"微软雅黑");
+			line-height: 16px;
+			opacity: 0.7;
+		}
+		li{
+			float: none;
+			margin-bottom: 5px;
+			em{
+				@include txts(12px,#cd4a48,"微软雅黑");
+				font-style: oblique;
+			}
+		}
+		.news-list{
+			padding-top: 20px;
+			li{
+				margin: 0;
+			}
+		}
+	}
+	.oil-intro{
+		width: 227px;
+		span{
+			color: #418c59;
+		}
+	}
+	.oil-history{
+		width: 220px;
+		span{
+			color: #d2994f;
+		}
+	}
+	.oil-skills{
+		width: 160px;
+		margin-right: 0;
+		span{
+			color: #cc7680;
+		}
+	}
+}
+.article-box{
+	margin-top: 50px;
+	overflow: hidden;
+}
+.article-txt{
+	@include wh(400px,auto);
+	h2{
+		margin-top: 0;
+		padding-bottom: 20px;
+		border-bottom: 2px solid $txtColorBlue;
+	}
+}
+.txt6{
+	margin: 0 20px 0 0;
+	font-style: oblique;
+	font-weight: bold;
+	@include txts(72px,$txtColorYel,"黑体");
+}
+.txt7,.txt8{
+	line-height: 16px;
+	font-weight: bold;
+	@include txts(42px,$txtColorBlue,"黑体");
+}
+.txt8{
+	display: block;
+	margin-top: 15px;
+	font-size: 33px;
+}
+.text-box{
+	@include txts(12px,$txtColorGray,"宋体");	
+	line-height: 16px;
+	img{
+		float: right;
+		margin: 10px 7px 10px 10px;
+		@include wh(180px,260px);
+	}
+	p{
+		text-indent: 2em;
+	}
+}
+.txt9{
+	float: left;
+	margin-right: 10px;
+	line-height: 76px;
+	@include txts(70px,$txtColorYel,"微软雅黑");	
+}
+.atc-jpg-box{
+	position: relative;
+	@include wh(460px,275px);
+	background: url("../img/img2.jpg") no-repeat;
+	background-size: 100%;
+	// 兼容ie8以下
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/img2.jpg',sizingMethod='scale');
+	.atc-jpg-info,span{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 10px 0;
+	}
+	.atc-jpg-info{
+		@include wh(100%,44px);
+		background: #000;
+		@include op(0.35);
+	}
+	span{
+		@include wh(auto,44px);
+		margin: 10px 35px;
+		padding: 0 10px;
+		line-height: 44px;
+		@include txts(26px,white,"微软雅黑");
+		@include op(0.85);
+		border-left: 2px solid white;	
+		em{
+			font-style: normal;
+			font-size: 12px;
+			margin-left: 20px;
+		}
+	}
+}
+.atc-list-box{
+	@include wh(460px,318px);
+	margin-top: 30px;
+	background: #eeeed6;
+	ul{
+		padding: 20px;
+	}
+	li{
+		margin-bottom: 20px;
+		@include txts(16px,$txtColorG2,"宋体");
+	}
+	li:before{
+		content: "";
+		display: inline-block;
+		_display: inline;
+		@include wh(19px,13px);
+		margin-right: 5px;
+		background: url("../img/icon.png") no-repeat;
+	}
+}
+.foot-box{
+	margin-top: 3px;
+	margin-top: 10px\9;
+}
+.red-bg-box{
+	@include wh(240px,86px);
+	padding: 37px 10px;
+	background: $txtColorRed;
+	span{
+		float: left;
+		height: 86px;
+	}
+}
+.txt10{
+	line-height: 83px;
+	padding-right: 3px;
+	padding-right: 0\9;
+	margin-right: 7px;
+	@include txts(110px,#fff,"微软雅黑");
+	border-right: 2px solid #fff;
+}
+.txt11-box{
+	padding-top: 8px;
+}
+.txt11{
+	@include txts(21px,#fff,"黑体");
+	font-style: oblique;
+	line-height: 24px;
+}
+.txt12{
+	@include txts(12px,#fff,"黑体");
+	line-height: 6px;
+	font-style: normal;
+}
+.foot-txt-box{
+	position: relative;
+	@include wh(160px,120px);
+	padding: 20px;
+	background: #eedeae;
+	span{
+		@include txts(14px,$txtColorG2,"黑体");
+		font-style: oblique;
+		line-height: 16px;
+		text-indent: 2em;
+		i{
+			margin-right: 30px;
+		}
+	}
+}
+.txt13,.txt14{
+	position:absolute;
+	font-style: normal;
+	@include txts(72px,$txtColorRed,"黑体");
+}
+.txt13{
+	top: 0;
+	left: -20px;
+}
+.txt14{
+	bottom: -35px;
+	right: -20px;
+}

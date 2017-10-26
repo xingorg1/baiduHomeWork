@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width,minimum-scale=0.1">
+	<title>第十期作业</title>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		.content{
+			padding: 20px;
+			display: -webkit-flex;
+			display: flex;
+			justify-content: space-between;
+			/*水平居中: center居中,space-between:两端对齐,flex-start:左对齐.flex-end:右对齐,space-around:平均分布,但是每个元素左右都会有相等的margin值*/
+			align-items: center;
+			/*垂直居中,center居中,flex-start:上对齐,flex-end: 下对齐,space-between: 上下两端对齐,space-around: 平均分布,每个元素上下的margin相等.stretch：铺满，拉伸到一定的高度然后铺满整个容器*/
+			border: 1px solid #ddd;
+		}
+		.item{
+			width: 150px;
+			min-width: 150px;
+			margin-bottom: 20px;
+			border: 1px solid red;
+		}
+		.item-1{
+			height: 120px;
+		}
+		.item-2{
+			height: 100px;
+		}
+		.item-3{
+			height: 40px;
+		}
+		.item-4{
+			height: 200px;
+			border: 1px solid blue;
+		}
+		@media screen and (max-width: 640px){
+			.content{
+				align-items: flex-start;
+				/*设置垂直居中的方式，顶部居中，如果用了反向换行，顶部居中就变成了底部居中*/
+				flex-wrap: wrap;
+				/*设置换行，wrap换行，nowrap不换行，wrap-reverse：反向换行，行的顺序颠倒*/
+			}
+			.item-1,.item-2,.item-3{
+				order: 1;
+				/*设置排列的顺序，默认是0排在最前边，越小越靠前。*/
+			}
+			.item-4{
+				order: 0;
+				/*其实这个可以不设置*/
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="item item-1">1</div>
+		<div class="item item-2">2</div>
+		<div class="item item-3">3</div>
+		<div class="item item-4">4</div>
+	</div>
+</body>
+</html>

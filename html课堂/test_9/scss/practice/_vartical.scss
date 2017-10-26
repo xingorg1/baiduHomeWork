@@ -1,0 +1,96 @@
+$borColor: #dedede;
+$bgColor: #ededec;
+$mainColor: #2189bf;
+$hoverColor: #297bb1;
+$sideColor:#6e8095;
+$sideHoverClr: #ededef;
+@mixin wh($wid,$hei){
+	@if $wid {
+		width: $wid;
+	}
+	@if $hei {
+		height: $hei;
+	}
+	overflow: hidden;
+}
+@mixin lineH($index){
+	height: $index;
+	line-height: $index;
+}
+@mixin absolut($index){
+	position: relative;
+	&:after{
+		content: "";
+		position: absolute;
+		z-index: $index;
+	}
+}
+@mixin txts($fs,$cl,$fm){
+	@if $fs {
+		font-size: $fs;
+	}
+	@if $cl {
+		color: $cl;
+	}
+	@if $fm {
+		font-family: $fm;
+	}
+}
+@mixin op($index){
+	opacity: $index;
+	filter: alpha(opacity = ($index * 100));
+}
+@mixin bgImg($link){
+	background: url("../img/"+$link) no-repeat;
+}
+@mixin iCon($w,$h,$bg,$index){
+	@include wh($w,$h)
+	@include bgImg($bg)
+	margin-right: $index;
+}
+@mixin transForm($index){
+	-webkit-transform: $index;
+	-moz-transform: $index;
+	-ms-transform: $index;
+	transform: $index;
+}
+@mixin transiTion($index...){
+	-webkit-transition: $index;
+	-moz-transition: $index;
+	-ms-transition: $index;
+	transition: $index;
+}
+@mixin arrow($clr,$index){
+		border-right: 1px solid $clr;
+		border-bottom: 1px solid $clr;
+		@include transForm(rotate($index))
+}
+@mixin radiu($index){
+ -webkit-border-radius: $index;
+ -moz-border-radius: $index;
+ border-radius: $index;
+}
+@mixin boxSd($shandow...){
+	-webkit-box-shadow: $shandow;
+	-moz-box-shadow: $shandow;
+	-ms-box-shadow: $shandow;
+	box-shadow: $shandow;
+}
+
+%fWtD{
+	font-weight: bold;
+	text-decoration: underline;
+}
+%fWtD_no{
+	font-weight: normal;
+	text-decoration: none;
+}
+%inlineB{
+	display: inline-block;
+	_display: inline;
+}
+%boxSz{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}

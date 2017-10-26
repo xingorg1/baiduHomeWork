@@ -1,0 +1,249 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font-family: "微软雅黑";
+}
+ul li{
+	list-style: none;
+}
+a:link,a:hover{
+	text-decoration: none;
+}
+.clearfix{
+	*zoom:1;
+}
+.clearfix:after{
+	height: 0;
+	clear: both;
+	content: "";
+	visibility: hidden;
+	display: block;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+/*header*/
+.header,.footer{
+	height: 80px;
+	line-height: 80px;
+	padding: 0 20px;
+	background: #333;
+	color: #fff;
+}
+.footer{
+	text-align: center;
+}
+.header .fl{
+	height: 80px;
+}
+.header img{
+	width: 155px;
+    height: 50px;
+    margin-top: 15px;
+}
+.nav{
+	
+}
+.nav li{
+	float: left;
+	margin-left: 10px;
+}
+.nav li a,.nav li a:link{
+	color: #fff;
+}
+.nav li a:hover,.nav li a:active,.nav li.cur a{
+	/*css 链接伪类选择器的顺序*/
+	color: #999;
+}
+
+.container{
+	padding: 20px;
+	background-color: #dedede;
+}
+.cont{
+	padding: 30px 20px;
+	margin-bottom: 20px;
+	background: #fff;
+	border: 1px solid #ccc;
+	-webkit-box-shadow: 2px 2px 4px 0px #666;
+	-moz-box-shadow: 2px 2px 4px 0px #666;
+	box-shadow: 2px 2px 4px 0px #666;
+}
+.cont h3{
+	font-size: 22px;
+	color: #333;
+	margin-top: 15px;
+}
+.cont h4{
+	font-size: 18px;
+	color: #aaa;
+	margin: 15px 0 10px;
+}
+.text-info{
+	font-size: 12px;
+	color: #666;
+	margin-bottom: 20px;
+}
+.text-info span{
+	margin-right: 10px;
+}
+.paragraph{
+	color: #333;
+	font-size: 16px;
+	text-indent: 2em;
+	line-height: 2em;
+}
+.paragraph a{
+	color: blue;
+	text-decoration: underline;
+}
+.Illustration{
+	margin: 15px 0;
+	width: 400px;
+	height: 320px;
+}
+.Illustration img{
+	width: 100%;
+}
+.list{
+	margin: 10px 20px;
+}
+.list li{
+	margin-bottom: 10px;
+}
+.cont3 div{
+	display: inline-block;
+	border: 1px solid #999;
+	padding: 10px;
+	margin: 10px 50px;
+	text-align: center;
+}
+.cont3 div p{
+	margin-bottom: 10px;
+}
+.cont3 div img{
+	width: 110px;
+	height: 80px;
+}
+.ol-list{
+	padding-left: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.ol-list li{
+	margin-bottom: 10px;
+}
+.table-info{
+	font-size: 18px;
+}
+table{
+	width: 100%;
+	border: 1px solid #999 ;
+	border-collapse: collapse;/*将表格的空隙设为0*/
+}
+thead{
+	background: #333;
+	color: white;
+	text-align: left;
+}
+tr{
+	height: 30px;
+	line-height: 30px;
+}
+th,td{
+	padding: 0 5px;
+}
+tbody a,tbody a:link,tbody a:hover{
+	color: #9c27b0;
+	text-decoration: underline;
+}
+tbody tr:last-child,.last-tr{
+	background: #dedede;
+}
+.slidebar h3{
+	border-left: 3px solid #dedede;
+	padding-left: 15px;
+	margin-bottom: 25px;
+}
+form{
+}
+.form-row{
+	margin-bottom: 10px;
+}
+.form-row-mar{
+	margin-bottom: 25px;
+}
+.form-row:after{
+	clear: both;
+	content: "";
+	display: block;
+	visibility: hidden;
+}
+
+.form-tit,.form-cont{
+	float: left;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.form-tit{
+	text-align: right;
+	width: 30%;
+	margin-right: 20px;
+	font-size: 14px;
+	height: 27px;
+	line-height: 27px;
+}
+.form-cont{
+	width: 65%;
+}
+.form-cont-pad{
+	padding-top: 4px;
+}
+.form-cont input{
+	outline: none;
+	border: 1px solid #dedede;
+	padding: 5px 3px;
+}
+input:focus,select:focus,textarea:focus{
+	outline: none;
+	border: 1px solid #4488ff;
+}
+.form-cont p{
+	margin-top: 10px;
+	font-size: 14px;
+	color: #999;
+}
+label:hover,input[type="radio"]:hover,input[type="checkbox"]:hover,input[type="submit"]:hover{
+	cursor: pointer;
+}
+select{
+	height: 27px;
+}
+option{
+	padding: 10px 5px;
+}
+textarea{
+	padding: 7px;
+	max-width: 85%;
+	width: 100%;
+}
+input[type="submit"]{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	text-align:center;
+	background: #4488ff;
+	color: #fff;
+	padding: 15px 0;
+	border: 1px solid #3c78e2;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+input[type="submit"]:hover{
+	background: #3c78e2;
+}

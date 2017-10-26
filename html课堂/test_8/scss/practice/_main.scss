@@ -1,0 +1,32 @@
+// test_8.css
+.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12{
+	background: $bgColor;
+	border: $borColor 1px solid;
+	padding: 10px;
+	margin: 10px 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+}
+.row-box div{
+	float: none;
+}
+.row{
+	margin-left: -10px;
+	@extend .clearfix
+}
+.row:after{
+	@extend .clearfix:after;
+}
+@for $i from 1 through 12{
+	.col-md-#{$i} {
+		width: 8.333333% * $i;
+	}
+}
+@media screen and (max-width: 768px){
+	@for $i from 1 through 12{
+		.col-sm-#{$i} {
+			width: 8.333333% * $i;
+		}
+	}
+}

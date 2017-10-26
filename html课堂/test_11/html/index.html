@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viveport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>第十一期作业</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+      (function(doc, win) {
+      	var docEl = doc.documentElement,
+      			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      			recalc = function() {
+      				var clientWidth = docEl.clientWidth;
+      				if(clientWidth < 320) {
+      					docEl.style.fontSize = 50 + 'px'
+      				} else if(clientWidth > 640) {
+      					docEl.style.fontSize = 100 + 'px'
+      				} else {
+      					docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+      				}
+      			};
+      	recalc();
+      	if(!doc.addEventListener) return;
+      	win.addEventListener(resizeEvt, recalc, false);
+      })(document, window);
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="container"><a href="javascript:;"><i class="icon icon-enter"></i>返回</a><span>小石头的动漫城</span></div>
+    </div>
+    <div class="nav">
+      <ul class="clearfix">
+        <li class="cur"><a href="javascript:;">首页</a></li>
+        <li><a href="javascript:;">商品</a></li>
+        <li><a href="javascript:;">荣誉</a></li>
+        <li><a href="javascript:;">企业</a></li>
+        <li><a href="javascript:;">关于</a></li>
+      </ul>
+    </div>
+    <div class="swiper"><a class="swiper-left" href="javascript:;"></a><a class="swiper-right" href="javascript:;"></a>
+      <ul class="swiper-container clearfix">
+        <li class="cur"><a href="javascript:;"><img src="../img/1.jpg" alt="焦点图"></a></li>
+        <li><a href="javascript:;"><img src="../img/2.jpg" alt="焦点图"></a></li>
+        <li><a href="javascript:;"><img src="../img/3.jpg" alt="焦点图"></a></li>
+        <li><a href="javascript:;"><img src="../img/4.jpg" alt="焦点图"></a></li>
+        <li><a href="javascript:;"><img src="../img/5.jpg" alt="焦点图"></a></li>
+      </ul>
+      <div class="pagination"><span></span></div>
+    </div>
+    <div class="nav-tab box">
+      <ul class="clearfix">
+        <li><a href="javascript:;"> <i class="icon icon-computer_fill"></i>账户</a></li>
+        <li><a href="javascript:;"> <i class="icon icon-createtask_fill"></i>记录</a></li>
+        <li><a href="javascript:;"> <i class="icon icon-integral_fill"></i>收藏</a></li>
+        <li><a href="javascript:;"> <i class="icon icon-manage_fill"></i>管理</a></li>
+        <li><a href="javascript:;"> <i class="icon icon-mine_fill"></i>我的</a></li>
+      </ul>
+    </div>
+    <div class="pic-box box">
+      <ul class="container">
+        <li><a href="javascript:;"><span class="pic-parent"><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1505983450939&amp;di=6785a3529c66f1a69bd51ea729b1c598&amp;imgtype=0&amp;src=http%3A%2F%2Fuploads.xuexila.com%2Fallimg%2F1701%2F907-1F1041A609-52.jpg" alt=""></span>
+            <h4>樱桃小丸子</h4><span class="pic-tit">打招呼的正面速写图</span></a></li>
+        <li><a href="javascript:;"><span class="pic-parent"><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1505983563252&amp;di=c627803512b635edb0bab0a02fca1d9e&amp;imgtype=0&amp;src=http%3A%2F%2Fi2.sanwen.net%2Fdoc%2F1608%2F703-160P3102620.jpg" alt=""></span>
+            <h4>奥特曼</h4><span class="pic-tit">经典姿势图</span></a></li>
+        <li><a href="javascript:;"><span class="pic-parent"><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1505983508038&amp;di=199ecff0f3d323718bc3cb294943b962&amp;imgtype=0&amp;src=http%3A%2F%2Fimg17.3lian.com%2Fd%2Ffile%2F201701%2F06%2F6706ddbfab3b39fef4d99fc1f34435ee.jpg" alt=""></span>
+            <h4>哆啦A梦</h4><span class="pic-tit">傻笑的哆啦A梦</span></a></li>
+      </ul>
+    </div>
+    <div class="item-box box">
+      <h3>卡通女头像</h3>
+      <div class="item1 clearfix"><span class="fl"><img src="http://img1.imgtn.bdimg.com/it/u=2713835835,2151127112&amp;fm=27&amp;gp=0.jpg" alt=""></span>
+        <div class="item-cont fr">
+          <div class="item1-box"><a href="javascript:;"><span>人物卡通形象</span></a><a href="javascript:;"><span>卡通画人物</span></a></div>
+          <div class="item1-box2"><a href="javascript:;"><span>呆萌可爱卡通简笔画</span></a><a href="javascript:;"><span>超呆萌可爱卡通图片</span></a></div>
+        </div>
+      </div>
+      <div class="item2 clearfix"><span class="fl"><img src="http://img4.imgtn.bdimg.com/it/u=4051778386,3418212808&amp;fm=27&amp;gp=0.jpg" alt=""></span>
+        <div class="item-cont fr">
+          <div class="item1-box"><a href="javascript:;"><span>动漫卡通人物图片</span></a><a href="javascript:;"><span>可爱萌卡通人物</span></a></div>
+          <div class="item1-box2"><a href="javascript:;"><span>人物图片素材</span></a><a href="javascript:;"><span>唐老鸭卡通人物图片</span></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="item-box box">
+      <h3>卡通男头像</h3>
+      <div class="item1 clearfix"><span class="fl"><img src="http://img0.imgtn.bdimg.com/it/u=1708687508,851657236&amp;fm=27&amp;gp=0.jpg" alt=""></span>
+        <div class="item-cont fr">
+          <div class="item1-box"><a href="javascript:;"><span>卡通q版人物</span></a><a href="javascript:;"><span>卡通小人物</span></a></div>
+          <div class="item1-box2"><a href="javascript:;"><span>人物卡通头像</span></a><a href="javascript:;"><span>素描卡通人物</span></a></div>
+        </div>
+      </div>
+      <div class="item2 clearfix"><span class="fl"><img src="http://img3.imgtn.bdimg.com/it/u=528429777,2679620484&amp;fm=27&amp;gp=0.jpg" alt=""></span>
+        <div class="item-cont fr">
+          <div class="item1-box"><a href="javascript:;"><span>q版卡通人物</span></a><a href="javascript:;"><span>漫画人物图片</span></a></div>
+          <div class="item1-box2"><a href="javascript:;"><span>卡通古代人物</span></a><a href="javascript:;"><span>剪影</span></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="article box">
+      <div class="article-type1">
+        <div class="article-item clearfix">
+          <div class="article-pic fl"><a href="javascript:;"><img src="http://img5.imgtn.bdimg.com/it/u=1872912241,2442248702&amp;fm=27&amp;gp=0.jpg" alt=""></a></div>
+          <div class="article-cont fl">
+            <h4>动漫展2015年13月123日在京盛大开幕</h4>
+            <div class="article-time"> <span>腾讯新闻网</span><span>6个小时前</span></div>
+          </div>
+        </div>
+        <div class="article-item clearfix">
+          <div class="article-pic fl"><a href="javascript:;"><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1505993472195&amp;di=eb339762b36fa49e1a61cdc786c859fe&amp;imgtype=0&amp;src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fac4bd11373f08202a12757044afbfbedab641b50.jpg" alt=""></a></div>
+          <div class="article-cont fl">
+            <h4>《名侦探柯南》终于迎来了大结局，柯南能否长大？</h4>
+            <div class="article-time"> <span>动漫新闻网</span><span>12个小时前</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="article-type2">
+        <div class="article-cont">
+          <h4>《冰雪奇缘》再出年度大戏，姐妹反目终将开撕？</h4>
+          <div class="article-pic"><a href="javascript:;"><img src="http://f12.baidu.com/it/u=711522589,2112460504&amp;fm=72" alt=""></a><a href="javascript:;"><img src="http://img4.imgtn.bdimg.com/it/u=3974079974,279535952&amp;fm=27&amp;gp=0.jpg" alt=""></a><a href="javascript:;"><img src="http://img1.imgtn.bdimg.com/it/u=759819857,542369288&amp;fm=27&amp;gp=0.jpg" alt=""></a></div>
+          <div class="article-time"> <span>vov中文网</span><span>一天前</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="no-more">没有更多了。。。</div>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+html{
+font-family: "微软雅黑"
+}
+.cont{
+	margin: 20px auto;
+	text-align:center;
+}
+.rank{
+	padding: 20px;
+	margin: 20px auto;
+	width: 500px;
+}
+.rank li{
+	text-align: center;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	color: #e0a2b0;
+}
+.rank li:nth-child(odd){
+	background: #f9ecec;
+}
+.rank li:first-child{
+	background: #cc7676;
+	color: #fff;
+}
+.rank li:nth-child(2){
+	color: red;
+}
+.rank li:nth-child(3){
+	color: #ff6c00;
+}
+.rank li:nth-child(4){
+	color: #ff8a00;
+}
+.rank span{
+	padding: 10px;
+	width: 30%;
+	display: block;
+	text-align: center;
+}
+.rank span:first-child{
+	width: 10%;
+}
+.rank li span:last-child,.rank li span:nth-child(2){
+	border-left: 2px solid #fff;
+	text-align: left;
+}
+.input-item{
+	width: 200px;
+	padding: 5px 10px;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	color: #f100ff;
+	border: 1px solid #f100ff;
+	-webkit-transition: all .65s;
+	-moz-transition: all .65s;
+	-ms-transition: all .65s;
+	-o-transition: all .65s;
+}
+.input-item:focus{
+	width: 500px;
+	font-size: 32px;
+	color: #001dff;
+	outline: none;
+	border: 1px solid #001dff;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	-webkit-transition: all .65s;
+	-moz-transition: all .65s;
+	-ms-transition: all .65s;
+	-o-transition: all .65s;
+	transition: all .65s;
+}
+.input-cont{
+	display: inline-block;
+	position: relative;
+}
+.input-leg,.input-leg2{
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	background: #f100ff;
+	-webkit-transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-ms-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	transition: all 1s linear;
+}
+.input-leg{
+	top: -5px;
+	left: 0;
+}
+.input-leg2{
+	bottom: -5px;
+	right: 0; 
+}
+.input-cont:hover .input-leg,.input-cont:hover .input-leg2{
+	background: #001dff;
+	-webkit-transition: all 1.5s linear .25s;
+	-moz-transition: all 1.5s linear .25s;
+	-ms-transition: all 1.5s linear .25s;
+	-o-transition: all 1.5s linear .25s;
+	transition: all 1.5s linear .25s;
+}
+.input-cont:hover .input-leg{
+	left: 510px;
+}
+.input-cont:hover .input-leg2{
+	right: 500px;
+}
+.swiper-box{
+	position: relative;
+	width: 500px;
+	height: 300px;
+	margin: 20px auto;
+	background: #f1f1f1;
+}
+.swiper-cont div,.swiper1,.swiper2,.swiper3{
+	width: 0%;
+	height: 300px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-transition: width .5s linear;
+	-moz-transition: width .5s linear;
+	-ms-transition: width .5s linear;
+	-o-transition: width .5s linear;
+	transition: width .5s linear;
+}
+.swiper1{
+  background: -webkit-linear-gradient(bottom, #fba555, #ffed6c 75%);
+  background: -moz-linear-gradient(bottom, #fba555, #ffed6c 75%);
+  background: -ms-linear-gradient(bottom, #fba555, #ffed6c 75%);
+  background: -o-linear-gradient(bottom, #fba555, #ffed6c 75%);
+  background: linear-gradient(to top, #fba555, #ffed6c 75%);
+}
+.swiper2{
+  background: -webkit-linear-gradient(right, #55d5fb, #fd74a7 75%);
+  background: -moz-linear-gradient(right, #55d5fb, #fd74a7 75%);
+  background: -ms-linear-gradient(right, #55d5fb, #fd74a7 75%);
+  background: -o-linear-gradient(right, #55d5fb, #fd74a7 75%);
+  background: linear-gradient(to left, #55d5fb, #fd74a7 75%);
+}
+.swiper3{
+  background: -webkit-linear-gradient(bottom right, #55fb69, #6cfff1  75%);
+  background: -moz-linear-gradient(bottom right, #55fb69, #6cfff1  75%);
+  background: -ms-linear-gradient(bottom right, #55fb69, #6cfff1  75%);
+  background: -o-linear-gradient(bottom right, #55fb69, #6cfff1  75%);
+  background: linear-gradient(to top left, #55fb69, #6cfff1  75%);
+}
+.swiper-num{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: inline-block;
+	z-index: 9;
+}
+.swiper-num a{
+	display: inline-block;
+	margin-left: 10px;
+	padding: 10px 20px;
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	font-weight: bold;
+	background: rgba(255,255,255,.45);
+}
+.swiper-num a:hover,.swiper-num a:active{
+	color: red;
+	cursor: pointer;
+	background: rgba(255,255,255,.95);
+}
+.swiper-box :target{
+	width: 100%;
+	-webkit-transition: width .5s linear;
+	-moz-transition: width .5s linear;
+	-ms-transition: width .5s linear;
+	-o-transition: width .5s linear;
+	transition: width .5s linear;
+}
+.in-cont{
+	height: 60px;
+}

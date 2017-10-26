@@ -1,0 +1,52 @@
+$borColor: #dedede;
+$bgColor: #f5f5f5;
+$mainColor: #e74f4d;
+$hoverColor: #d6403e;
+@mixin wh($wid,$hei){
+	@if $wid {
+		width: $wid;
+	}
+	@if $hei {
+		height: $hei;
+	}
+	overflow: hidden;
+}
+@mixin txts($fs,$cl,$fm){
+	@if $fs {
+		font-size: $fs;
+	}
+	@if $cl {
+		color: $cl;
+	}
+	@if $fm {
+		font-family: $fm;
+	}
+}
+@mixin op($index){
+	opacity: $index;
+	filter: alpha(opacity = ($index * 100));
+}
+@mixin bgImg($link){
+	background: url("../img/"+$link) no-repeat;
+}
+@mixin lineH($index){
+	height: $index;
+	line-height: $index;
+}
+%fWtD{
+	font-weight: bold;
+	text-decoration: underline;
+}
+%fWtD_no{
+	font-weight: normal;
+	text-decoration: none;
+}
+%boxSd{
+	box-shadow: 2px 2px 3px 3px #ddd;
+}
+@mixin transForm($index){
+	-webkit-transform: $index;
+	-moz-transform: $index;
+	-ms-transform: $index;
+	transform: $index;
+}

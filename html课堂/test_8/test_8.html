@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no">
+	<!-- user-scalable=no:是说让网站禁止缩放，让屏幕只能滚动。不推荐所有的网站都使用。 -->
+	<!-- 上述三个meta标签必须按照此顺序放在所有head内部标签前边 -->
+	<title>第八期-bootstrap</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style>
+  	div{
+  		padding: 10px 0;
+  		border:1px solid #dedede;
+  		background: #f9f9f9;
+  	}
+  	div.row,div.container-fluid{
+  		margin: 10px 0;
+  		padding: 0;
+  		border: 0;
+  		background: none;
+  	}
+  </style>
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+		<div class="col-md-1">.col-md-1</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">col-md-3 我里边的文字太多了，导致我比我的兄弟们的高度高出太多，那咋办呢？建议使用.clearfix类和响应式工具类</div>
+		<div class="col-md-3">col-md-3</div>
+		<div class="clearfix visible-xs-block"></div>
+		<div class="col-md-3">col-md-3</div>
+		<div class="col-md-3">col-md-3</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-md-4">col-md-4</div>
+		<div class="col-xs-6 col-md-4">col-md-4</div>
+		<div class="col-xs-6 col-md-4">col-md-4</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">col-xs-6</div>
+		<div class="col-xs-6">col-xs-6</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-8">col-md-8</div>
+		<div class="col-xs-6 col-md-4">col-md-4</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10">col-md-10</div>
+		<div class="col-md-2">col-md-2</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-5">col-md-5</div>
+			<div class="col-md-7">col-md-7</div>
+		</div>
+	</div>
+	<!-- 多余列 -->
+	<div class="row">
+		<div class="col-md-9">col-md-9</div>
+		<div class="col-md-4">col-md-4</div>
+		<div class="col-md-7">col-md-7</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2">col-md-2</div>
+		<div class="col-md-2 col-md-offset-2">col-md-2》col-md-offset-2</div>
+	</div>
+	<!-- 嵌套类 -->
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col-md-4">col-md-9>>col-md-4</div>
+				<div class="col-md-4">col-md-9>>col-md-4</div>
+				<div class="col-md-4">col-md-9>>col-md-4</div>
+			</div>
+		</div>
+	</div>
+	<!-- 列的顺序改变 -->
+	<!-- push:推，left值加大，界面上显示向右移动*列，pull：拉，right值加大，显示上向左移动了*列 -->
+	<div class="row">
+		<div class="col-md-9 col-md-push-3">.col-md-9>>col-md-push-3</div>
+		<div class="col-md-3 col-md-pull-9">.col-md-3>>col-md-pull-3</div>
+	</div>
+	<h1 class="h1">BootStrap<small class="small">小标题</small></h1>
+	<h2>BootStrap<small class="small">小标题</small></h2>
+	<h3>BootStrap<small class="small">小标题</small></h3>
+	<h4>BootStrap<small class="small">小标题</small></h4>
+	<h5>BootStrap<small class="small">小标题</small></h5>
+	<h6>BootStrap<small class="small">小标题</small></h6>
+	<p class="text-justify col-md-3 text-nowrap">Bootstrap 将全局 font-size 设置为 14px，line-height 设置为 1.428。这些属性直接赋予 body 元素和所有段落元素。另外，p（段落）元素还被设置了等于 1/2 行高（即 10px）的底部外边距（margin）。</p>
+	<div class="clearfix" style="margin-top: 30px;">清除浮动</div>
+	<p class="lead">通过添加<mark>.lead</mark>类，可以让段落突出显示.p的默认字体大小是14px，.lead<del>不是14px,</del>而是21px</p>
+	<div class="col-lg-9 text-justify clearfix">
+		<mark>mark:高亮显示</mark>
+		<del>del:删除线</del>
+		<s>s:无用的文本</s>
+		<ins>ins:插入文本</ins>
+		<small>small:小号文本</small>
+		<strong>strong:着重强调文本</strong>
+		<em>em:斜体</em>
+		<b>b:表示高亮词汇和短语，不具有任何着重的意义</b>
+		<i>i:主要用于发言、技术词汇</i>
+	</div>
+	<div class="clearfix" style="margin-top: 30px;">清除浮动</div>
+	<div>
+		<p class="text-lowercase">ThBAa test</p>
+		<p class="text-uppercase">ThBAa test</p>
+		<p class="text-capitalize">ahbsa test</p>
+	</div>
+	<div>
+		<h3>缩略语</h3>
+		<p title="attribute">请看我的缩略语 <attr title="html是一种超文本标记语言" class="initialism">HTML</attr>是一种超文本标记语言</p>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
