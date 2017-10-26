@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第五期作业-排序算法</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box" style="display: block;">
+		<input type="text" placeholder="请输入1-100以内的数字">
+		<input type="button" value="插入" id="add">
+		<input type="button" value="排序" id="rank">
+		<p style="color: red;"></p>
+	</div>
+	<ul class="rank-box">
+	</ul>
+	<script>
+		var oInfo = document.querySelector(".box p");
+		var oBox = document.querySelector(".rank-box");
+		var oInput = document.querySelector("input[type='text']");
+		var oBtnA = document.getElementById("add");
+		var oBtnR = document.getElementById("rank");
+		var arr = [20, 10, 60, 80, 45, 23, 42, 38, 61, 92, 10, 13, 4, 87, 1, 19, 14, 82];
+		// 删除结构
+		function delLI(){
+			var nLiLength = oBox.children.length;
+			if(nLiLength <= 0){
+				console.log("没有结构可删");
+			}else{
+				for (var b = nLiLength - 1; b >= 0; b--) {
+					oBox.removeChild(oBox.children[b]);
+				}
+			}
+		}
+		// 创造Li
+		function createLI(value){
+			var oLi = document.createElement("li");
+			oLi.style.height = value+"px";
+			oBox.appendChild(oLi);
+		}
+		// 插入li
+		function addLI(arr){
+			for (var i = 0; i < arr.length; i++) {
+				createLI(arr[i])
+			}
+		}
+		// 冒泡排序
+		function dubbleSort(arrays){
+			for (var i = 0; i < arrays.length-1; i++) {
+				for (var j = 0; j < arrays.length-1-i; j++) {
+					if(arrays[j]>arrays[j+1]){
+						var temp = arrays[j];
+						arrays[j] = arrays[j+1];
+						arrays[j+1] = temp;
+					}
+				}
+			}
+			return arrays;
+		}
+		// 事件
+		addLI(arr);
+		oInput.onfocus = function(){
+			oInfo.innerText = "";
+		}
+		oBtnA.onclick = function(){
+			var liHeight = parseInt(oInput.value);
+			if(isNaN(liHeight)){
+				oInfo.innerText = "请输入正确的数字！";
+				oInput.value = '';
+			}else if(liHeight > 100 || liHeight < 1){
+				oInfo.innerText = "请输入1-100以内的数字!";
+				oInput.value = '';
+			}else{
+				// 判断数值是否已经大于60个
+				if(arr.length >= 20){
+					oInfo.innerText = "已经20个了，差不多行了！";
+				}else{
+					createLI(liHeight)
+					// 点击插入后将input里边的内容清空
+					// 方法：value等于空
+					oInput.value = '';
+					// 由于这次是排序一组数组，而不是从结构中获取数据以生成新数组来排序，所以每次动态添加一个li，都要把其高度值也push到arr里边，日后排序只动这个数组，省去了获取结构数值生成数组的步骤！
+					arr.push(liHeight);
+				}
+			}
+			
+		}
+		oBtnR.onclick = function(){
+			var rankArr = dubbleSort(arr);
+			delLI();
+			addLI(rankArr);
+		}
+	</script>
+</body>
+</html>

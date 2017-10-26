@@ -1,0 +1,22 @@
+1. switch语句可以替换掉逻辑结构多的if语句
+2. appendChild()必须与createElmenet()相结合。注意createElement的写法一定要正确
+3.监听input的键入键出事件onblur、onfocus
+4.number，parseInt，parseFloat的区别。注意number函数的写法，首字母大写Number()
+5.removeChild删除子节点、删除所有子节点，利用for循环+removeChild，倒着删：for(var i = childs.length - 1;i > 0; i--){}
+6.一次性的定时器遏制住alert()的优先弹窗功能
+7.push()向后插入一个数据到数组，reverse()翻转数组，把数组里边的数据翻个个儿。
+8.sort()与比较大小的函数function sortFun(a,b){return a - b};如果a[1] - b[1]，则可以判断二维数组中每个数组的第2个值的大小，a-b从小到大，反之从大到小。
+9.对已有结构排序：先将结构中的数据取出，生成数组排序，之后再插入到结构中。
+10.字符串截取函数：slice()、substring()、substr()
+11.字符串中最后一个字符的下标：字符.length-1
+12.获取数据生成二维数组/json格式：利用双重循环
+逆推遍历二维数组的方法，循环外创建数组/json，第一重循环中创建二维数组/二维json(大概就是那么个意思)，第二重循环中插入值到二维数组/二维json中。如下：
+var arr = [];
+for(var i = 1; i < oUl.children.length; i++){
+	存成二维数组
+	arr[i] = new Array();//二维数组初始化之，遍历的过程中，定义数组
+	for(var a = 1; a < 2; a++){//这里就循环一次，删掉也可以正常执行程序
+		arr[i].push(sCityData);//将arr[i]初始化成数组后，才支持push方法，所以push等数组方法需要数组来调用
+		arr[i].push(nWeaterData);
+	}
+}

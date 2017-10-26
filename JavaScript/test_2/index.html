@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js第二期-城市环境排名</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+		<h3>城市空气质量表</h3>
+		<form class="weater-box">
+			<label for="city">城市：</label>
+			<input type="text" id="city" placeholder="请输入你们家的" value=""><br>
+			<p class="error" id="cityError"></p>
+			<label for="weater">空气指数：</label>
+			<input type="text" id="weater" placeholder="请输入你们家的" value="">
+			<input type="button" value="提交" id="submit">
+			<p class="error" id="weaterError"></p>
+		</form>
+		<ul class="rank-box">
+			<li id="noData">暂无数据...</li>
+		</ul>
+		<div class="clearfix">
+			<input type="button" value="排序" class="rank" id="rank">
+			<input type="button" value="清空" class="rank" id="rankClear">
+		</div>
+		<p class="info" id="info"></p>
+	</div>
+	<script>
+		var oBtnR = document.getElementById('rank'),
+				oBtnS = document.getElementById('submit'),
+				oBtnC = document.getElementById('rankClear'),
+				oBtnR = document.getElementById('rank'),
+				oNoData = document.getElementById('noData'),
+				sCityError = document.getElementById('cityError'),
+				sWeaterError = document.getElementById('weaterError'),
+				sInfo = document.getElementById('info'),
+				sCity = document.getElementById('city'),
+				sWeater = document.getElementById('weater');
+		var oUl = document.querySelector(".rank-box"),
+				oNum = document.querySelector(".num");
+		// 事先添加默认列表
+		/*遍历读取aqiData中各个城市的数据
+		  将空气质量指数大于60的城市显示到aqi-list的列表中
+		*/
+		var aqiData = [
+		  ["北京", 90],
+		  ["上海", 50],
+		  ["呼和浩特", 10],
+		  ["广州", 50],
+		  ["成都", 90],
+		  ["西安", 100]
+		];
+		if(!aqiData){
+			oNoData.style.display = 'block';
+		}else{
+			oNoData.style.display = 'none';
+			for (var i = 0; i < aqiData.length; i++) {
+				var oLiHtml = '<span class="city">'+aqiData[i][0]+'：'+'</span><span class="progress"><span class="pro-flo" style="width: '+aqiData[i][1]+'px"></span></span><span class="num">'+aqiData[i][1]+'%</span>';
+				add(oLiHtml);
+			}
+		}
+		// 自主添加
+		oBtnS.disabled = true;
+		sCity.onfocus = function(){sCityError.innerText = "";};
+		sWeater.onfocus = function(){sWeaterError.innerText = "";oBtnS.disabled = false;};
+		sCity.onblur = function(){
+			cityIf();
+		}
+		sWeater.onblur = function(){
+			weaterIf();
+		}
+		oBtnS.onclick = function(){
+			if(!sCity.value){
+				sCityError.innerText = "请输入内容！";
+			}else if(parseInt(sCity.value)|| parseInt(sCity.value)== 0 ){
+				sCityError.innerText = "请输入正规有效的中文地名！";
+			}else{
+				if(!sWeater.value){
+					sWeaterError.innerText = "请输入内容！";
+				}else if(isNaN(sWeater.value) || sWeater.value==" "){
+					sWeaterError.innerText = "请输入正确的数字！";
+				}else if(parseInt(sWeater.value)<0||parseInt(sWeater.value)>100){
+					sWeaterError.innerText = "请输入0-100之内的数字！";
+				}else{
+					sWeater.value = Number(sWeater.value);
+					if(oNoData){
+						oNoData.style.display = 'none';
+					} 
+					var oLiText = '<span class="city">'+sCity.value+'：'+'</span><span class="progress"><span class="pro-flo" style="width: '+sWeater.value+'px"></span></span><span class="num">'+sWeater.value+'%</span>';
+					add(oLiText);
+				}
+			}
+		}
+		function add(strings){
+			var oLi = document.createElement("li");
+			oLi.innerHTML = strings;
+			oUl.appendChild(oLi);
+			sCity.value = '';
+			sWeater.value = '';	
+			oBtnS.disabled = true;//每次提交完了，再禁用一下按钮，不然还能不停的传空数据进去
+		}
+		function cityIf(){
+			if(!sCity.value){
+				sCityError.innerText = "请输入内容！";
+			}else if(parseInt(sCity.value)|| parseInt(sCity.value)== 0 ){
+				sCityError.innerText = "请输入正规有效的中文地名！";
+			}else{
+			}
+		}
+		function weaterIf(){
+			// 一个bug：城市输入了，但是数值不输入只是点击一下文本框，再去点击提交按钮，是可以提交的。
+			if(!sWeater.value){
+				sWeaterError.innerText = "请输入内容！";
+			}else if(isNaN(sWeater.value) || sWeater.value==" "){
+				sWeaterError.innerText = "请输入正确的数字！";
+			}else if(parseInt(sWeater.value)<0||parseInt(sWeater.value)>100){
+				sWeaterError.innerText = "请输入0-100之内的数字！";
+			}else{
+				sWeater.value = Number(sWeater.value);
+				if(oNoData){
+					oNoData.style.display = 'none';
+				} 
+			}
+		}
+		// 排序
+		function sortFun(a,b){
+			return a[1] - b[1]; 
+		}
+		oBtnR.onclick = function(){
+			if(oUl.children.length <= 1){
+				sInfo.innerText = "没有序好排的！";
+			}else{
+				// 问题是，怎么用现在排好序的数组，对li进行排序？
+				// 把关键信息（获取到每一个li中的值）提取出来整理成新的数组（用push把值放到数组中，利用sort进行排序成新数组），再循环抽取调用
+				// 新问题：信息抽取的时候，会取到名字的冒号，那么需要字符串处理掉冒号：字符串截取函数slice(start,end)
+				// 新问题：将抽取的信息汇总成二维数组？
+				var arr = [];
+				var oJson = {}; 
+				for(var i = 1; i < oUl.children.length; i++){
+					var cityName = oUl.children[i].children[0].innerText;
+					var sCityData = cityName.slice(0,cityName.length-1);
+					var nWeaterData = parseInt(oUl.children[i].children[2].innerText);
+					// 收集数据之方法一：存成二维数组
+					arr[i] = new Array();//二维数组初始化之，遍历的过程中，定义数组
+					for(var a = 1; a < 2; a++){
+						arr[i].push(sCityData);//将arr[i]变成数组后，才支持push方法，所以push等数组方法需要数组来调用
+						arr[i].push(nWeaterData);
+					}
+					// 收集数据之方法二：存成对象
+					// oJson[i] = {};
+					// oJson[i].name = sCityData 
+					// oJson[i].num = nWeaterData;
+				}
+			// console.log(oJson)
+			// 			for(var a = 0; a < 10; a++){
+// // // // // // arr长度有问题,暂未找
+			// 			console.log(arr[a])
+			// 			}
+			// 接下来就是怎么给二维数组或json进行排序了，
+			// console.log(arr.sort(sortFun))
+			// 排序后翻转,或者把排序函数的a-b改成b-a，就成了从大到小的排序了
+			var rankData = arr.sort(sortFun);
+			var arrays = rankData.reverse()
+			console.log(arrays)
+			// 排完后打扫屋子
+			removeLi();
+			// 最后 把新的按顺序排列的东西再装进dom中即可。
+				for (var i = 1; i < arrays.length; i++) {
+					var oNewLi = '<span class="city">'+arrays[i][0]+'：'+'</span><span class="progress"><span class="pro-flo" style="width: '+arrays[i][1]+'px"></span></span><span class="num">'+arrays[i][1]+'%</span>';
+					add(oNewLi);
+				}
+			
+			}
+		}
+		// 其他方法
+				// //1.双重for循环。(外循环控制轮数)  
+    //     for(var i=0;i<arr.length-1;i++){  
+    //         //2.指定轮数和次数（内循环控制次数）  
+    //         for(var j=0;j<arr.length-1;j++){  
+    //             //3.判断是否符合标准。如果符合标准交换位置。  
+    //             //从小到大排列顺滑，如果前面的比后面的大，那么交换位置。  
+    //             if(arr[j] > arr[j+1]){  
+    //                 var temp = arr[j];  
+    //                 arr[j] = arr[j+1];  
+    //                 arr[j+1] = temp;  
+    //             }  
+    //         }  
+    //     }  
+    //     console.log(arr); 
+		// 清空
+		oBtnC.onclick = function(){
+			if(oUl.children.length > 1){
+				removeLi();
+				oNoData.style.display = 'block';
+				setTimeout(function(){clear()},100)
+			}else{
+				sInfo.innerText = "没有可以清空的数据！";
+			}
+		}
+		function removeLi(){
+			var childs = oUl.childNodes;
+			for(var i = childs.length - 1;i > 1; i--){
+			// 这里我让i>1,是不想删除最后一个我自己的提示文字。
+				oUl.removeChild(childs[i])
+			// 当程序运行后，无论在FireFox还是在IE下，均不能完全的删除所有的子节点（FireFox中把空白区域也当成节点，所以删除结点的结果会不一样的），这是因为当你把索引为0的子节点删除后那么很自然的原来索引为1节点此时它的索引变成0了，而这时变量i已经变成1了，程序继续走时就会删除原先索引为２的现在为1的节点这样程序运行的结果就是只删除了一半的子节点，用for in遍历结果也是一样的。想正常的删除全部节点的话，我们应该从后面往前删除，
+			}
+		}
+		function clear(){sInfo.innerText = "已清空！";}
+	</script>
+</body>
+</html>

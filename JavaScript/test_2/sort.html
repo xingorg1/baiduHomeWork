@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SORT排序学习</title>
+</head>
+<body>
+	<script>
+		var aqi = [["北京", 90],["上海", 50],["呼和浩特", 10],["广州", 50],["成都", 90],["西安", 100]];
+		var arr = [];
+		function s(x,y){
+			return x - y
+		}
+		arr.push(aqi.sort(s));
+		console.log(arr);
+		console.log(arr[0].length);
+		for(var i = 0; i < arr[0].length; i++){
+
+			console.log(arr[0][i]);
+		}
+		arr[0][i].sort(s)
+	</script>
+</body>
+</html>

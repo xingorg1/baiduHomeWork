@@ -1,0 +1,32 @@
+body{font:16px "微软雅黑";}
+h3{text-align: center;margin-top: 0;}
+ul,li{list-style: none;padding: 0;margin: 0;display: inline-block;}
+li{width: auto;margin-right: 5px;border: 1px solid #4488ff;padding: 5px 10px;border-radius: 5px;}
+li:hover{cursor: pointer;background: #4488ff;color: #fff;}
+.clearfix{*zoom:1;}
+.clearfix:after{content: "";clear: both;display: block;visibility: hidden;height: 0;}
+.box{position:relative;width: auto;margin: 210px auto;padding: 20px;text-align: center;box-shadow: 2px 2px 3px 0px #dedede;border-radius: 5px;border: 1px solid #efefef}
+input,input[type="button"],.rank-box,.pop,.del-pop{border: 1px solid #dedede; border-radius: 5px;}
+label{width: 80px;display: inline-block;text-align: right;}
+input{padding: 5px;}
+input:focus{outline: none;border: 1px solid #4488ff;}
+input[type="button"]{padding: 5px 7px;background: #f1f1f1;}
+input[type="button"]:hover{cursor: pointer;background: #4488ff;border: 1px solid #fff; color: #fff;}
+input[type="button"]:focus{outline: none;border: 1px solid #fff;}
+.error{display: none;color: red;font-size: 12px;padding: 5px 0;margin: 0;padding-left: 85px;}
+.info{color: #4488ff;font-size: 12px;text-align: right;margin: 0;padding-top: 5px;}
+.row{margin-left: 5px; vertical-align: super;}
+.btn{text-align: right;}
+.rank-box{margin-top: 10px;padding: 10px;/*display: none;*/}
+.pop,.del-pop{position: absolute;top: 0;left: 50%;margin-left: -160px;min-width: 320px;min-height: 150px;line-height: 150px;background: #fff;box-shadow: 2px 2px 3px 0px #dedede;transform: scale(0);transition: transform .31s;}
+.del-pop{line-height: 30px;top: 40px;}
+.del-pop b{color: #f00}
+.close{position: absolute;top: 10px;right: 10px;width: 20px;line-height: 20px;color: #dedede;transform: rotate(0);transition: transform .31s;}
+.close:hover{color: #333;transform: rotate(180deg);transition: transform .31s;cursor: pointer;}
+.no-data{display: none;font-size: 14px;text-align: center;color: #dedede;margin: 0;}
+textarea{width: 200px;height: 80px;}
+.search{margin-left: 25px;}
+.mask{
+	color: red;
+	border-color: red;
+}

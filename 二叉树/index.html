@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二叉树学习</title>
+</head>
+<body>
+<script>
+	function BinaryTree(){
+		var Node = function(key){
+			this.key = key;
+			this.left = null;
+			this.right = null;
+		};
+		var oRoot = null;
+		var insertNode = function(node,newNode){
+			if(newNode.key < node.key){
+				if(node.left === null){
+					node.left = newNode;
+				}else{
+					insertNode(node.left,newNode);
+				}
+			}else{
+				if(node.right === null){
+					node.right = newNode;
+				}else{
+					insertNode(node.right,newNode);
+				}
+			}
+		};
+		this.insert = function(key){
+			var newNode = new Node(key);
+			if(!(oRoot === null)){
+				insertNode(oRoot,newNode)
+			}else{
+				oRoot = newNode;
+			}
+		};
+		// 中序遍历函数封装
+		var inOrderTraverseNode = function(node,callback){
+			if(node !== null){
+				console.log(node.key)
+				console.log("左孩子"+node.left)
+				inOrderTraverseNode(node.left,callback);//这种在函数身体里边再调用函数自身的方法真的要注意使用！
+				callback(node.key);
+				inOrderTraverseNode(node.right,callback);
+				console.log("右孩子"+node.right)
+			}else{
+				console.log("上边输出的那个数就是当前节点，但是他没有孩子")
+			}
+		}
+		// 增加遍历的api接口
+		this.inOrderTraverse = function(callback){
+			inOrderTraverseNode(oRoot,callback);
+		}
+	};
+	var nodeArr = [8,3,10,1,6,14,4,7,13];
+	var binaryTree = new BinaryTree();
+	nodeArr.forEach(function(key){
+		binaryTree.insert(key);
+	});
+	var callback = function(key){
+		console.log("遍历成功，值为：——"+key);
+	};
+	binaryTree.inOrderTraverse(callback);
+</script>
+<!-- 解释 
+<script>
+	function BinaryTree(){//封装一个二叉树的函数
+		var Node = function(key){//创建一个根节点，根节点的值是参数key，创建left表示左箭头，创建right表示右箭头
+			this.key = key;
+			this.left = null;
+			this.right = null;
+		};
+		var oRoot = null;//准备一个根节点的坑。
+		var insertNode = function(node,newNode){//“寻找节点位置并插入节点”函数，传参为当前节点和要加入的新节点
+			// 因为二叉树的数据结构特点就是根节点左边的元素值比根节点小，右边的大、。
+			if(newNode.key < node.key){//如果新节点比当前节点小，那就扔到左边.特别注意这里比较的是节点的值，比较节点永远都是走else的。
+				if(node.left === null){//扔到左边前，先看看左边有没有空位子
+					node.left = newNode;//有位子，就把这个值扔到这里
+				}else{
+					insertNode(node.left,newNode);//若左边没有空位子（即左边已经有了根节点，那么再次执行插入节点函数，同时比较的数变成左边这个根节点的值和新值的大小了。也就是站在node.left的基础上，以node.left作为新的根节点去查找他的下一级进行再次判断，看看newNode是放到他下边的左边还是右边
+				}
+			}else{//如果新节点比当前节点大，那就扔到右边
+				if(node.right === null){//扔到右边前，看看有没有地方
+					node.right = newNode;//有地方直接扔进去
+				}else{
+					insertNode(node.right,newNode);//没地方，那就重新遍历，遍历换成比较右边占着茅坑的这个值和要放进来的新值的大小
+				}
+			}
+		}
+		this.insert = function(key){//"插入根节点"函数
+			var newNode = new Node(key);//传进来的key值，作为新值
+			if(!(oRoot === null)){//如果第一层的根节点不为空
+				insertNode(oRoot,newNode);//往根节点的下一层插入去,执行“寻找节点位置并插入节点”函数，根据二叉树的数据结构特点和原则【根节点左边的元素值比根节点小，右边的元素值比根节点大】判断性的寻找正确的位置并插入
+			}else{
+				oRoot = newNode;//根节点为空，就是整个树还为空，那就让这个值作为根节点占住根节点的位、
+			}
+		};
+	}
+	var nodeArr = [8,3,10,1,6,14,4,7,13];//要遍历的数组
+	var binaryTree = new BinaryTree();//把整个自定义的二叉树函数送给这个变量指针
+	nodeArr.forEach(function(key){//遍历数组，并传入要遍历的值
+		binaryTree.insert(key);//执行二叉树函数的"插入根节点"函数，开始插入函数。
+	})	
+</script>
+-->
+<!-- 遍历解释
+<script>
+	//在原来二叉树函数的基础上继续补充
+	function BinaryTree(){
+		// 中序遍历函数封装
+		var inOrderTraverseNode = function(node,callback){//接收根节点的值和回调函数
+			if(node !== null){//首先判断,二叉树的当前节点里边有没有内容
+				inOrderTraverseNode(node.left,callback);//如果该节点左边有分节点（左边有孩子）那么在左孩子的位置基础上，再次调用中序遍历函数，并把当前左孩子的值传给函数。直到找不到左孩子时这个才会停止，函数会一层一层的嵌套。那么，直到最后一层的叶子级别的左孩子，就不会继续调用这个函数了，也就是会遍历到树的最左下角的那个节点了。
+				//这种在函数身体里边再调用函数自身的方法真的要注意使用！
+				callback(node.key);//输出当前的值
+				inOrderTraverseNode(node.right,callback);//再看看这个节点上有没有右节点，如果有，就站在右节点的位置上，再次执行这个函数，那么下次遍历的就会是这个右节点的左孩子是否存在了。
+			}
+		}
+		// 增加遍历的api接口
+		this.inOrderTraverse = function(callback){//后期调用
+			inOrderTraverseNode(oRoot,callback);//接口内，调用中序遍历函数，并且传入当前的根节点的值和回调函数。传oRoot是因为要从根节点开始。
+		}
+	};
+
+	var callback = function(key){// 增加遍历的自定义效果的回调函数
+		console.log(key);//每次遍历后输出当前的遍历值。
+	};
+
+	binaryTree.inOrderTraverse(callback);// 调用封装好的遍历方法api，以实现遍历二叉树的目标。
+</script>
+ -->
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="郭菊锋">
+	<meta name="description" content="二叉树中序遍历分析">
+	<title>中序遍历二叉树生成排序数组</title>
+</head>
+<body>
+	<script>
+		function tree(){//封装一个二叉树的函数
+			// 创建一个空的根节点，根节点的值是参数key，创建left表示左箭头，创建right表示右箭头
+			var oNode = function(key){
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			}
+			// 开始构造二叉树 api
+			// 创建并确定第一层的根节点
+			var oRoot = null;//空的根节点，准备一个根节点的坑。
+			this.startTree = function(key){//"插入根节点"函数，设置一个开始的接口方法
+
+				var newNode = new oNode(key);//每次执行都创建一个新的节点，传进来的key值作为新值。
+				if (!(oRoot === null)) {//如果第一层的根节点不为空
+					binaryTree.createTree(oRoot,newNode)
+					//第一个值以后的值,把他们当做新节点给了根的孩子们，让他们依次当爸爸妈妈。
+					//往根节点的下一层插入去,执行“寻找节点位置并插入节点”函数，根据二叉树的数据结构特点和原则【根节点左边的元素值比根节点小，右边的元素值比根节点大】判断性的寻找正确的位置并插入
+				} else {
+					//else,根节点为空，就是整个树还为空，那就让这个值作为根节点占住根节点的位、
+					oRoot = newNode;//把第一次创建的节点给了根。
+				}
+			}
+			// 创造二叉树 api
+			// 在子层依次按规律寻找位置存放新节点
+			this.createTree = function(node,newNode){//设置一个创造的方法
+				//“寻找节点位置并插入节点”函数，参数为当前节点和要加入的新节点
+				// 因为二叉树的数据结构特点就是根节点左边的元素值比根节点小，右边的大、。
+				console.log(newNode)
+				if(newNode.key < node.key){//后边的新值比当前值小的话，放左边，否则放右边
+				//如果新节点比当前节点小，那就扔到左边.特别注意这里比较的是节点的值，如果你错误地比较节点的话，将永远都是走else流程的。
+					if(node.left === null){//扔到左边前，先看看左边有没有空位子，没位置也放不下，没位置就在左边这里继续和左边的值判断，如果小于左边的值，放左边值的孩子层的左边，反之大就放右边
+						node.left = newNode;//左边有位子（即为空值），就把这个值扔到这里
+					}else{
+						binaryTree.createTree(node.left,newNode);//若左边没有空位子（即左边已经有了根节点，那么再次执行插入节点函数，同时比较的数变成左边这个根节点的值和新值的大小了。也就是站在node.left的基础上，以node.left作为新的根节点去查找他的下一级进行再次判断，看看newNode是放到他下边的左边还是右边
+						//注意上边如果是var声明的函数，则不用binaryTree这么调，如果是通过this.加给binaryTree的方法，那么需要通过binaryTree来调用这个接口。
+					}
+					// 接下来同左边了
+				}else{//如果新节点比当前节点大，那就扔到右边
+					if(node.right === null){//扔到右边前，看看有没有地方
+						node.right = newNode;//有地方直接扔进去
+					}else{
+						binaryTree.createTree(node.right,newNode);//没地方，那就重新遍历，遍历换成比较右边占着茅坑的这个值和要放进来的新值的大小
+					}
+				}
+			};
+			// 遍历二叉树的接口 api
+			this.startLDR = function(callback){
+				centerTraverse(oRoot,callback);//接口内，调用中序遍历函数，并且第一次调用，传入当前的根节点的值和回调函数。传oRoot是因为要从根节点开始。
+			}
+			// 遍历二叉树——中序遍历函数
+			//中序遍历的顺序就是左根右，所以先node.left、再node.key、最后node.right
+			var centerTraverse = function(node,callback){//用var声明（所以后期调用就不用父亲的权限了，区别于this声明）一个中序遍历函数，接收参数为节点的值和回调函数
+				if(!(node === null)){//首先判断,二叉树的当前节点里边有没有内容
+					centerTraverse(node.left,callback);//这种在函数身体里边再调用函数自身的方法真的要注意使用！
+					//如果该节点左边有分节点（左边有孩子）那么在左孩子的位置基础上，再次调用中序遍历函数，并把当前左孩子的值传给函数。直到找不到左孩子时这个才会停止，函数会一层一层的嵌套。那么，直到最后一层的叶子级别的左孩子，就不会继续调用这个函数了，也就是会遍历到树的最左下角的那个节点了。
+					callback(node.key);//得到当前遍历的值然后当参数传给callback函数，然后。看自己的需求，遍历到当前值时自己需要什么操作就写在callback里。我这里只用了console.log输出当前的值,和push把当前值放进新数组里以求得到顺序遍历后的新排序函数。
+					centerTraverse(node.right,callback);//再看看这个节点上有没有右节点，如果有，就站在右节点的位置上，再次执行这个函数，那么下次遍历的就会是这个右节点的左孩子是否存在了。
+				}
+			}
+		};
+		// 执行二叉树，整理数组
+		var arr = [8,3,16,12,18,39,20,23];//准备一个数组
+		var binaryTree = new tree();//把封装好的二叉树函数给一个变量指针
+		arr.forEach(function(key){//利用forEach循环函数，依次将数组中的值放在二叉树中
+			binaryTree.startTree(key);
+		})
+		var aT = [];
+		var callback = function(key){//回调函数，用于二叉树执行遍历后，接收返回的值。
+			console.log(key);//依次输出值用于调试
+			aT.push(key);//利用push把每次输出的值放到空数组中，生成一个新的排序数组
+		}
+		binaryTree.startLDR(callback);//调用遍历函数接口，执行遍历二叉树的命令
+		console.log(aT);
+	</script>
+</body>
+</html>

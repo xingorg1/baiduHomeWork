@@ -1,0 +1,4 @@
+1.注意forEach的写法，是方法内部传一个函数当参数，这个函数内部执行某些命令，然后让数组的每一位都依次执行
+nodeArr.forEach(function(key){
+		binaryTree.insert(key);
+});

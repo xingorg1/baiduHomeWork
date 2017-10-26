@@ -1,0 +1,26 @@
+body{font:16px "微软雅黑";}
+h3{text-align: center;margin-top: 0;}
+.clearfix{*zoom:1;}
+.clearfix:after{content: "";clear: both;display: block;visibility: hidden;height: 0;}
+.box{margin: 110px auto;overflow: hidden;box-shadow: 0px 2px 2px 3px #dedede;padding: 20px;}
+form{width: 320px;margin: 0 auto;}
+.box,input,input[type="button"],.rank-box,.progress{border: 1px solid #dedede; border-radius: 5px;}
+label{width: 80px;display: inline-block;text-align: right;}
+input{padding: 5px;}
+input:focus{outline: none;border: 1px solid #4488ff;}
+input[type="button"]{padding: 5px 7px;background: #f1f1f1;}
+input[type="button"]:hover{cursor: pointer;background: #4488ff;border: 1px solid #fff; color: #fff;}
+input[type="button"]:focus{outline: none;border: 1px solid #fff;}
+.error{color: red;font-size: 12px;padding: 5px 0;margin: 0;padding-left: 85px;}
+.info{color: #4488ff;font-size: 12px;text-align: right;margin: 0;padding-top: 5px;}
+
+ul.rank-box{list-style: none;background: #fff;margin: 20px auto 0;overflow: hidden;padding: 20px;text-align: center;}
+.rank-box li,.city,.num{width: 85px;text-align: center;}
+.rank-box li{position: relative;margin-bottom: 10px;display: inline-block;margin-right: 10px;}
+.progress{position: relative;margin: 25px 0;width: 20px;height: 100px;display: inline-block;overflow: hidden;vertical-align: text-top;}
+.pro-flo{bottom: 0; background: #4488ff;width: 20px;height: 30px;}
+.pro-flo,.city,.num{position: absolute;left: 0;}
+.city{top: 130px;display: inline-block;overflow: hidden;max-height: 19px;}
+.rank{margin-top: 10px;float: right;margin-left: 5px}
+#noData{font-size: 14px; margin: 0 auto;color: #dedede;}
+.num{top: 5px;font-size: 12px;color: gray;}

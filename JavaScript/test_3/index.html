@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第三期-js基础练习</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+		<h3>空气质量排序</h3>
+		<ul id="source">
+			<li>北京空气质量：
+			<b>90</b>
+			<span class="progress">
+				<span class="pro-flo" style="width: 90px;"></span>
+			</span>
+			</li>
+			<li>呼和浩特空气质量：
+				<b>70</b>
+			<span class="progress">
+				<span class="pro-flo" style="width: 70px;"></span>
+			</span></li>
+			<li>内蒙古空气质量：
+				<b>80</b>
+			<span class="progress">
+				<span class="pro-flo" style="width: 80px;"></span>
+			</span></li>
+			<li>广州空气质量：
+				<b>50</b>
+			<span class="progress">
+				<span class="pro-flo" style="width: 50px;"></span>
+			</span></li>
+			<li>深圳空气质量：
+				<b>4</b>
+			<span class="progress">
+				<span class="pro-flo" style="width: 40px;"></span>
+			</span></li>
+			<li>福州空气质量：
+				<b>32</b>
+			<span class="progress">
+				<span class="pro-flo" style="width: 32px;"></span>
+			</span></li>
+			<li>成都空气质量：
+				<b>100</b>
+			<span class="progress">
+				<span class="pro-flo" style="width: 90px;"></span>
+			</span></li>
+		</ul>
+		<div class="rank-box">
+			<h3>排序后</h3>
+			<ul id="resort">
+				<!-- <li>第一名：北京空气质量：
+					<b>90</b>
+					<span class="progress">
+						<span class="pro-flo" style="width: 90px;"></span>
+					</span>
+				</li> -->
+			</ul>
+		</div>
+		<div class="btn">
+			<input type="button" name="" id="sort-btn" value="排序">
+			<p class="error"></p>
+		</div>
+	</div>
+	<script>
+		var oBtn = document.getElementById("sort-btn"),
+				oSourse = document.getElementById("source"),
+				oResort = document.getElementById("resort"),
+				oError = document.querySelector(".error"),
+				oRankBox = document.querySelector(".rank-box");
+		var nIndex = 0;
+		oBtn.onclick = function(){
+			if(nIndex == 0){
+				var arr = [];
+				var sText = "";
+				for(var i = 0; i< oSourse.children.length; i++){
+					sText = oSourse.children[i].innerText;//这里注意是等于不是加等于，每次循环添加一次，而不是累加全部循环的值。只为获取
+					arr[i] = new Array();//这个地方还不能用var 直接arr[i] = new Array()就好，而用=[]这样也会报错
+					arr[i][0] = sText.slice(0,sText.indexOf("空"));//从0截取到“空”字 得到城市名字
+					arr[i][1] = sText.slice(sText.indexOf("：")+2,sText.length-1)//从“：”字截取到长度-1位，得到天气数值
+					//这个地方也是直接等于，一次添加即可，下次就添加到别的数组里了，所以不能累加。
+				}
+				// 排序
+				function sortArr(a,b){
+					return b[1] - a[1];//b-a为倒序
+				}
+				var aRankArr = arr.sort(sortArr);
+				var aSerialNum = ["一","二", '三', '四', '五', '六', '七'];
+				// 遗留问题，第一名，第二名这些一二三，最后数目是不固定的，怎么动态的生成大写的一、二？初步想法是标号1变成字符串1，再转换成大写一。。。
+				for(var x = 0; x < aRankArr.length; x++){
+					var oNewLi =  document.createElement('li');
+					// oNewLi.innerHTML = '第'+(x+1)+'名：'+aRankArr[x][0]+'空气质量：<b>'+aRankArr[x][1]+'</b><span class="progress">	<span class="pro-flo" style="width: '+aRankArr[x][1]+'px;"></span></span>';
+					oNewLi.innerHTML = '第'+aSerialNum[x]+'名：'+aRankArr[x][0]+'空气质量：<b>'+aRankArr[x][1]+'</b><span class="progress">	<span class="pro-flo" style="width: '+aRankArr[x][1]+'px;"></span></span>';
+					oResort.appendChild(oNewLi)
+				}
+				oRankBox.style.display = "block";
+				nIndex = 1;
+			}else{
+				oError.style.display = "block";
+				oError.innerText = "已是最新排序情况!";
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>排序算法的十大情况</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="arr">源数据：
+	</div>
+	<ul class="rank-box">
+	</ul>
+	<div class="box-button">
+	</div>
+	<div class="boxes">
+		<!-- <div class="box">
+			<h4></h4>
+		</div>
+		-->
+	</div>
+	<div class="info">
+		<div>
+			<h4>冒泡循环原理</h4>
+			<ol>
+				<li>冒泡排序是双重循环，倒着循环，每循环一次，循环次数减一。</li>
+				<li>第一重遍历数组长度-1的轮数，第二重让每一个数都能依次和后边的数进行大小比较并位移。</li>
+				<li>第一轮出现一个最大的放到最后，第二轮去除最后一个最大数不进行比较。以此类推</li>
+				<li>利用一个空的第三者变量，让大的后（右）移，小的前（左）移。</li>
+				<li>若两个数的顺序正确（小的在左大的在右），则跳过本次循环。最后实现排序。</li>
+				<li>for遍历j的地方，条件中j<arr.length-1-i处，这个“-i”的设置是因为：第一次遍历结束, 数组中最后一项处于正确位置不会再有变化, 因此下一次遍历可以排除最后一项;后边类推。</li>
+			</ol>
+		</div>
+	</div>
+	<script>
+		// 创建结构
+		var oBtnBox = document.querySelector(".box-button");
+		var oBoxes = document.querySelector(".boxes");
+		for(var i = 0; i < 10; i++){
+			createDom("input",1,oBtnBox);
+			createDom("div",2,oBoxes);
+		}
+		function createDom(chilD,Bool,Parent){
+			var oChild = document.createElement(chilD);
+			if(Bool == 1){
+				oChild.type = "button";
+			}else if(Bool == 2){
+				oChild.className = "box";
+			}
+			Parent.appendChild(oChild)
+		}
+		var obtn = document.querySelectorAll(".box-button input[type='button']");
+		var obox = document.querySelectorAll(".box");
+		for(var i = 0; i < 10; i++){
+			createDom("h4",0,obox[i])
+		}
+		// 数据准备
+		var arrData= [12,35,23,18,95,2,67,9,56];
+		var txtArr = ["冒泡排序","快速排序","插入排序","选择排序","希尔排序","归并排序","堆排序","计数排序","桶排序","基数排序"]
+		// "基数排序"
+		var arrBox = document.querySelector(".arr");
+		arrBox.innerText+=arrData;
+		var rankBox = document.querySelector(".rank-box");
+		for(var i=0; i<obtn.length;i++){
+				obtn[i].value = txtArr[i];
+				obox[i].children[0].innerText = txtArr[i];
+				var oLi = document.createElement("li");
+				oLi.style.height = arrData[i]+"px";
+				rankBox.appendChild(oLi);
+		}
+		// 添加柱状图
+		function crateResult(index,arr){
+			obox[index].innerHTML += "<br>" + arrData;
+			var oUL = document.createElement("ul");
+			obox[index].appendChild(oUL);
+			for(var a = 0; a < arr.length; a++){
+				var oLI = document.createElement("li");//un
+				oLI.style.height = arr[a]+"px";
+				oUL.appendChild(oLI);
+			}
+		}
+		// 冒泡排序
+		function bubbleSort(arr){
+			for(i=0;i<arr.length-1;i++){
+				// console.log("i="+i+",下标对应数为"+arr[i]+",大循环 "+(i+1));
+				for(j=0;j<arr.length-1-i;j++){
+					// console.log("j="+j+",下标对应数为"+arr[j]+",小循环"+(i+1)+"-"+(j+1));
+					// console.log("j+1对应的数是"+arr[j+1]);
+					// console.log(arr[j]+"和"+arr[j+1]+"比");
+					if(arr[j]>arr[j+1]){
+						// if(arr[j]<arr[j+1])
+						// if判断里边，变成小于号就是倒排序
+						// console.log(arr[j]+"大于"+arr[j+1]+"，互换位置");
+						var temp=arr[j];
+						// console.log("先把"+arr[j]+"存到temp中");
+						// console.log("再让前边的大值"+arr[j]+"等于后边比他小的"+arr[j+1]);
+						arr[j]=arr[j+1];
+						arr[j+1]=temp;
+						// console.log("最后把存在temp中前边较大的值"+temp+"给了后边的arr[j+1]");
+						// console.log("调换"+arr[j]+"与"+arr[j+1]+"的顺序完成");
+					}else{
+						// console.log(arr[j]+"小于"+arr[j+1]+"，跳过本次循环");
+					}
+				}
+			}
+			return arr;
+		}
+
+		// 快速排序
+		function quickSort(elements){
+			if(elements.length <= 1){
+				return elements;
+			}
+			var pivotIndex = Math.floor(elements.length / 2);
+
+			var pivot = elements.splice(pivotIndex,1)[0];
+			console.log(pivot)
+			var left = [];
+			var right = [];
+			for(var i = 0; i < elements.length; i++){
+				if(elements[i] < pivot){
+					left.push(elements[i]);
+				}else{
+					right.push(elements[i]);
+				}
+			}
+			return quickSort(left).concat([pivot],quickSort(right));
+		};
+			var elements = [10,30,20,60,13];
+		// 	console.log(Math.floor(elements.length / 2))
+		// console.log(quickSort(elements)); 
+		// document.write(quickSort(elements));
+		// 插入排序
+		// function insertSort(){}
+		// 选择排序
+		// function selectSort(){}
+		// 希尔排序
+		// function Sort(){}
+		// 归并排序
+		// function Sort(){}
+		// 堆排序
+		// function Sort(){}
+		// 计数排序
+		// function Sort(){}
+		// 桶排序
+		// function Sort(){}
+		// 基数排序
+		// function Sort(){}
+		// 开始排序事件
+			// 冒泡排序
+		obtn[0].onclick = function(){
+			bubbleSort(arrData);
+			crateResult(0,arrData);
+		}
+			// 快速排序
+		obtn[1].onclick = function(){
+			var elements = [10,30,20,60,13];
+			quickSort(elements);
+			crateResult(1,elements);
+		}
+		
+	</script>
+</body>
+</html>

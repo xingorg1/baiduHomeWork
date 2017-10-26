@@ -1,0 +1,4 @@
+document.querySelector()里边，如果选择类名，一定加点，如果选择id一定加#号，不然根本选不到元素的，添加事件也会报错set property ‘onclick’事件为null！
+insertBefore(newnode,node);【需要两个参数】参数:newnode: 要插入的新节点。node: 指定此节点前插入节点。
+removeChild(node)： 删除节点
+for循环在一个函数中多次使用，是不是循环的变量不能一直都用i，否则会混乱的，可以把i改成b或其他

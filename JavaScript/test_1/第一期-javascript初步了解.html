@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js课程第一课</title>
+	<style>
+		body{padding: 20px;font:16px "微软雅黑";}
+		h3{text-align: center;margin-top: 0;}
+		label{width: 65px;display: inline-block;text-align: right;}
+		input{padding: 5px; border: 1px solid gray}
+		input:focus{outline: none;border: 1px solid #4488ff;}
+		span{font-size: 14px;}
+		.box{position: absolute;top: 0;right:0;bottom:0;left:0;margin: auto;width: 260px;height: 180px;padding: 20px;box-shadow: 0px 2px 3px 3px #f1f1f1;border-radius: 5px;}
+		.row{margin-top: 10px;}
+		.error{color: red;font-size: 12px;padding: 5px 0;margin: 0;padding-left: 70px;}
+		.btn{padding: 5px 10px;background: #fff; border-radius: 5px;}
+		.btn:hover{color: #fff;background: #4488ff;border-color: #4488ff;cursor: pointer;}
+		.close{position: absolute;top: 10px;right: 10px;line-height: 14px;color: #DEDEDE;font-size: 24px;height: 14px;overflow: hidden;transform: rotate(0deg);transition: transform .35s;}
+		.close:hover{color: #333;cursor: pointer;transform: rotate(180deg);transition: transform .35s;}
+		.box-child{display: none;background: #fff;line-height: 180px;text-align: center;}
+		.box-child p{line-height: 30px;margin-top: 45px;}
+		.gray{color: gray;}
+		.black{color: black;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h3>这是一个相当low的登录框</h3>
+		<form action="">
+			<div class="row">
+				<label for="name">用户名：</label>
+				<input type="text" id="name" placeholder="请输入您的用户名" value="">
+				<p class="error" id="tip"></p>
+			</div>
+			<div class="row">
+			<label for="pass">密码：</label>
+				<input type="password" id="pass" placeholder="" value="">
+			</div>
+			<div class="row">
+				<input type="button" value="登录" id="submit" class="btn" style="margin: 0 20px 0 75px;">
+				<input type="reset" value="取消" class="btn">
+			</div>
+		</form>
+		<div class="box box-child">
+			<p><span id="sCont"></span><br>欢迎您登录小石头官网！</p>
+			<span id="close" class="close">X</span>
+		</div>
+	</div>
+	<script>
+		var oBtn = document.getElementById("submit"),
+				oTip = document.getElementById("tip"),
+				sCont = document.getElementById("sCont"),
+				oClose = document.getElementById("close"),
+				sName = document.getElementById("name");
+		oBtn.onclick = function(){
+			if(!sName.value){
+				oTip.innerText = "请输入您的的用户名！";
+			}else{
+				sCont.parentNode.parentNode.style.display = 'block';
+				sCont.innerText = 'HELLO！ '+ sName.value + '！';
+			}
+		}
+		oClose.onclick=function(){
+			document.querySelector(".box-child")['style'].display = 'none';
+		}
+	</script>
+</body>
+</html>

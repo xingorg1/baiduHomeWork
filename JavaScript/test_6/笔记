@@ -1,0 +1,70 @@
+1、window.onload()函数每次必须用！
+	又一次把js文件放到顶部，然后说找不到某结构，导致改了半天的代码发现是顺序问题！！
+2、js获取textarea里边的文字内容：
+	innerText(空值)取不到，innerHTML(空值)也取不到！
+	只能使用value，刚开始value是空值取不到，输入数据后再取就能找到了。
+	但是f12看结构中，textarea的value还是没有或者还是自己之前在结构中设置的默认的值。
+3.插入结构的方法：
+	appendChild是向后插入，那向前插入呢?
+	答：insertBefore是向前插入，不过名字写对了但是参数没写对，他接受两个参数！！
+	第一个参数是要插入的节点；
+	第二个参数是要在谁之前插入；
+	总是忘掉需要两个参数，可能是因为自己对insertBefore的理解有误，insertBefore是向指定位置插入结构而不是向第一个结构之前插入，所以他每次在你想要往第一个位置插入时，是需要传入第一个位置的结构的，
+	在本次项目中，我要往ul的第一个li之前插入结构，所以我用ul.children[0]这个命令找到第一个li结构。
+	oUl.insertBefore(oLi,oUl.children[0]);这么写就是往第一个位置插入li
+4.字符串截取，将一段字符串分隔截成数组 — — split()方法，
+	我把split写错了，多谢了一个2成了splite
+5.以下这一点不会写
+	允许一次批量输入多个内容，格式可以为数字、中文、英文等，可以通过用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）等符号作为不同内容的间隔
+	aTxt = sTxt.split("，");只能切割一个，怎么切割多个？用判断的方法？
+		aTxt = sTxt.split(",") || aTxt = sTxt.split("、")这个写法肯定不对，因为或符号，是有一个成立就停止执行了，也就是有逗号和顿号的时候，他执行了逗号就停止了。是解析不到后边顿号的命令的
+		if(sTxt.indexOf(",") > 0){
+			aTxt = sTxt.split(",");
+		}else if(sTxt.indexOf("，") > 0){
+			aTxt = sTxt.split("，");
+		}else if(sTxt.indexOf("、") > 0){
+			aTxt = sTxt.split("、");
+		}else if(sTxt.indexOf(" ") > 0){
+			aTxt = sTxt.split(" ");
+		}else if(sTxt.indexOf(" ") > 0){
+			aTxt = sTxt.split(" ");
+		}这种判断的方法，可以后期改成switch语句来判断，但是他只能解决分隔符唯一的时候，也就是以上任何一种分隔符单一输入，都是可以分割的。如果遇到逗号和顿号混合输入的时候，这种写法就不成立了。
+		最后恍然大悟，用正则啊！
+6.switch语句的用法与写法：
+	1).注意标点符号，冒号和分号的使用和位置
+7.下拉刷新怎么写？
+	window.location.reload()
+8.删除结构removeChild()，
+	1).参数还是记不住，也就是用法不清楚
+		只接受一个位置信息（下标）输入要删除的结构所在的位置，就能把他删除。想想，你让程序去扇人，你总要告诉程序欠打的在哪吧！
+	2).如何在从左边删除还是从右边删除，那就是传哪里的位置了。
+		单个的删除一个方法
+			——从结构左边删除，就是传入所有子元素的第一个子元素，下标是0
+				oUl.removeChild(oUl.childs[0])
+			——从结构右边删除，最后一个元素的下标，就是(children.length-1)
+				oUl.removeChild(oUl.children[(oUl.children.length-1)])
+	4).两种删除的函数方法（指一次性全部删除结构！）：
+			因为，dom会把空节点当做文本节点算进去，所以如果正向（i++）这样删除的话，会删不干净只能删掉一半【这是因为当你把索引为0的子节点删除后那么很自然的原来索引为1节点此时它的索引变成0了，而这时变量i已经变成1了，程序继续走时就会删除原先索引为２的现在为1的节点这样程序运行的结果就是只删除了一半的子节点】，但是下边这段代码用if判断nodeType，如果是1就删除，不会浪费i的名额，这样就能全部删掉。
+				function clearText() {
+					var oUl=document.getElementById("ulBox");
+					// 在此完成该函数
+					var childs = oUl.childNodes;
+					for(var i=0;i<childs.length;i++){
+							if(childs[i].nodeType == 1){
+									oUl.removeChild(childs[i]);
+							}
+					}
+				}
+			第二种解决这种bug的方法，是倒着删除，从后往前边删除直到最后全部删除。
+				function removeLi(){
+					var childs = oUl.childNodes;
+					for(var i = childs.length - 1;i > 0; i--){
+						 oUl.removeChild(childs[i])
+					}
+				}
+9.查找字段，然后标红
+	利用的原理是:把输入的文字利用indexOf查找，如果在搜索范围内，这个结构里边的innerText的indexof大于0，则表面他有这个字，那么就执行标红处理。然后下次执行标红寻找之前，把上一轮标过红的全清除，不至于重叠。
+	问题：只能查一个字，或者一组100%匹配的文字，怎么支持模糊搜索？比如只要这组词中的任何一个字匹配上的都标红？
+	那就涉及到把传进来要搜索的字切割开来然后一个一个的查找。
+	利用split("")方法,不传参（只传一个空字符串参数）就能把结果劈成一个一个字的特殊功能来做
+	另外其实可以用正则表达式来做！

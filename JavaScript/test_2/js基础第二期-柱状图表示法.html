@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js第二期-城市环境排名</title>
+	<style>
+		body{font:16px "微软雅黑";}
+		h3{text-align: center;margin-top: 0;}
+		.clearfix{*zoom:1;}
+		.clearfix:after{content: "";clear: both;display: block;visibility: hidden;height: 0;}
+		.box{margin: 110px auto;overflow: hidden;box-shadow: 0px 2px 2px 3px #dedede;padding: 20px;}
+		form{width: 320px;margin: 0 auto;}
+		.box,input,input[type="button"],.rank-box,.progress{border: 1px solid #dedede; border-radius: 5px;}
+		label{width: 80px;display: inline-block;text-align: right;}
+		input{padding: 5px;}
+		input:focus{outline: none;border: 1px solid #4488ff;}
+		input[type="button"]{padding: 5px 7px;background: #f1f1f1;}
+		input[type="button"]:hover{cursor: pointer;background: #4488ff;border: 1px solid #fff; color: #fff;}
+		input[type="button"]:focus{outline: none;border: 1px solid #fff;}
+		.error{color: red;font-size: 12px;padding: 5px 0;margin: 0;padding-left: 85px;}
+		.info{color: #4488ff;font-size: 12px;text-align: right;margin: 0;padding-top: 5px;}
+
+		ul.rank-box{list-style: none;background: #fff;margin: 20px auto 0;overflow: hidden;padding: 20px;text-align: center;}
+		.rank-box li,.city,.num{width: 85px;text-align: center;}
+		.rank-box li{position: relative;margin-bottom: 10px;display: inline-block;margin-right: 10px;}
+		.progress{position: relative;margin: 25px 0;width: 20px;height: 100px;display: inline-block;overflow: hidden;vertical-align: text-top;}
+		.pro-flo{bottom: 0; background: #4488ff;width: 20px;height: 30px;}
+		.pro-flo,.city,.num{position: absolute;left: 0;}
+		.city{top: 130px;display: inline-block;overflow: hidden;max-height: 19px;}
+		.rank{margin-top: 10px;float: right;margin-left: 5px}
+		#noData{font-size: 14px; margin: 0 auto;color: #dedede;}
+		.num{top: 5px;font-size: 12px;color: gray;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h3>城市空气质量表</h3>
+		<form class="weater-box">
+			<label for="city">城市：</label>
+			<input type="text" id="city" placeholder="请输入你们家的" value=""><br>
+			<p class="error" id="cityError"></p>
+			<label for="weater">空气指数：</label>
+			<input type="text" id="weater" placeholder="请输入你们家的" value="">
+			<input type="button" value="提交" id="submit">
+			<p class="error" id="weaterError"></p>
+		</form>
+		<ul class="rank-box">
+			<li id="noData">暂无数据...</li>
+		</ul>
+		<div class="clearfix">
+			<input type="button" value="排序" class="rank" id="rank">
+			<input type="button" value="清空" class="rank" id="rankClear">
+		</div>
+		<p class="info" id="info"></p>
+	</div>
+	<script>
+		var oBtnR = document.getElementById('rank'),
+				oBtnS = document.getElementById('submit'),
+				oBtnC = document.getElementById('rankClear'),
+				oBtnR = document.getElementById('rank'),
+				oNoData = document.getElementById('noData'),
+				sCityError = document.getElementById('cityError'),
+				sWeaterError = document.getElementById('weaterError'),
+				sInfo = document.getElementById('info'),
+				sCity = document.getElementById('city'),
+				sWeater = document.getElementById('weater');
+		var oUl = document.querySelector(".rank-box"),
+				oNum = document.querySelector(".num");
+		var aqiData = [
+		  ["北京", 90],
+		  ["上海", 50],
+		  ["呼和浩特", 10],
+		  ["广州", 50],
+		  ["成都", 90],
+		  ["西安", 100]
+		];
+		if(!aqiData){
+			oNoData.style.display = 'block';
+		}else{
+			oNoData.style.display = 'none';
+			for (var i = 0; i < aqiData.length; i++) {
+				var oLiHtml = '<span class="city">'+aqiData[i][0]+'</span><span class="progress"><span class="pro-flo" style="height: '+aqiData[i][1]+'px"></span></span><span class="num">'+aqiData[i][1]+'%</span>';
+				add(oLiHtml);
+			}
+		}
+		// 自主添加
+		oBtnS.disabled = true;
+		sCity.onfocus = function(){sCityError.innerText = "";};
+		sWeater.onfocus = function(){sWeaterError.innerText = "";oBtnS.disabled = false;};
+		sCity.onblur = function(){
+			cityIf()
+		}
+		sWeater.onblur = function(){
+			weaterIf();
+		}
+		oBtnS.onclick = function(){
+			if(!sCity.value){
+				sCityError.innerText = "请输入内容！";
+			}else if(parseInt(sCity.value)|| parseInt(sCity.value)== 0 ){
+				sCityError.innerText = "请输入正规有效的中文地名！";
+			}else{
+				if(!sWeater.value){
+					sWeaterError.innerText = "请输入内容！";
+				}else if(isNaN(sWeater.value) || sWeater.value==" "){
+					sWeaterError.innerText = "请输入正确的数字！";
+				}else if(parseInt(sWeater.value)<0||parseInt(sWeater.value)>100){
+					sWeaterError.innerText = "请输入0-100之内的数字！";
+				}else{
+					sWeater.value = Number(sWeater.value);
+					if(oNoData){
+						oNoData.style.display = 'none';
+					} 
+					var oLiText = '<span class="city">'+sCity.value+'</span><span class="progress"><span class="pro-flo" style="height: '+sWeater.value+'px"></span></span><span class="num">'+sWeater.value+'%</span>';
+					add(oLiText);
+					oBtnR.disabled = false;//每次提交完了，关闭排序按钮的禁用功能
+				}
+			}
+		}
+		function add(strings){
+			var oLi = document.createElement("li");
+			oLi.innerHTML = strings;
+			oUl.appendChild(oLi);
+			sCity.value = '';
+			sWeater.value = '';	
+			oBtnS.disabled = true;
+		}
+		function cityIf(){
+			if(!sCity.value){
+				sCityError.innerText = "请输入内容！";
+			}else if(parseInt(sCity.value)|| parseInt(sCity.value)== 0 ){
+				sCityError.innerText = "请输入正规有效的中文地名！";
+			}else{
+			}
+		}
+		function weaterIf(){
+			if(!sWeater.value){
+				sWeaterError.innerText = "请输入内容！";
+			}else if(isNaN(sWeater.value) || sWeater.value==" "){
+				sWeaterError.innerText = "请输入正确的数字！";
+			}else if(parseInt(sWeater.value)<0||parseInt(sWeater.value)>100){
+				sWeaterError.innerText = "请输入0-100之内的数字！";
+			}else{
+				sWeater.value = Number(sWeater.value);
+				oBtnS.disabled = false;
+				if(oNoData){
+					oNoData.style.display = 'none';
+				} 
+			}
+		}
+		// 排序
+		function sortFun(a,b){
+			return a[1] - b[1]; 
+		}
+		oBtnR.onclick = function(){
+			if(oUl.children.length <= 1){
+				sInfo.innerText = "没有序好排的！";
+				oBtnR.disabled = true;
+			}else{
+				var arr = [];
+				for(var i = 1; i < oUl.children.length; i++){
+					var sCityData = oUl.children[i].children[0].innerText;
+					var nWeaterData = parseInt(oUl.children[i].children[2].innerText);
+					arr[i] = new Array();
+					for(var a = 1; a < 2; a++){
+						arr[i].push(sCityData);
+						arr[i].push(nWeaterData);
+					}
+				}
+			var rankData = arr.sort(sortFun);
+			var aRevData = rankData.reverse()
+			removeLi();
+				for (var i = 1; i < aRevData.length; i++) {
+					var oNewLi = '<span class="city">'+aRevData[i][0]+'</span><span class="progress"><span class="pro-flo" style="height: '+aRevData[i][1]+'px"></span></span><span class="num">'+aRevData[i][1]+'%</span>';
+					add(oNewLi);
+				}
+			oBtnR.disabled = true;//每次排序完成后，完了，关闭排序按钮的禁用功能
+			}
+		}
+		// 清空
+		oBtnC.onclick = function(){
+			if(oUl.children.length > 1){
+				removeLi();
+				oNoData.style.display = 'block';
+				setTimeout(function(){clear()},100)
+			}else{
+				sInfo.innerText = "没有可以清空的数据！";
+			}
+		}
+		function removeLi(){
+			var childs = oUl.childNodes;
+			for(var i = childs.length - 1;i > 1; i--){
+				oUl.removeChild(childs[i])
+			}
+		}
+		function clear(){sInfo.innerText = "已清空！";}
+	</script>
+</body>
+</html>

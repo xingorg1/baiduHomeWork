@@ -1,0 +1,26 @@
+body{font:16px "微软雅黑";}
+h4{text-align: center;margin: 0;}
+ul,li{list-style: none;padding: 0;margin: 0;display: inline-block;}
+li{width: 10px;background: #4488ff;margin-right: 5px;}
+li:hover{cursor: pointer;}
+.clearfix{*zoom:1;}
+.clearfix:after{content: "";clear: both;display: block;visibility: hidden;height: 0;}
+.box,.box-button{position:relative;width: auto;margin: 10px auto;padding: 20px;text-align: center;box-shadow: 2px 2px 3px 0px #dedede;border-radius: 5px;border: 1px solid #efefef}
+.box{display: inline-block;min-width: 320px;margin: 5px;}
+.box ul{display: block; margin: 20px 0;}
+.arr{text-align: center;}
+input,input[type="button"]{border: 1px solid #dedede; border-radius: 5px;}
+label{width: 80px;display: inline-block;text-align: right;}
+input{padding: 5px;}
+input:focus{outline: none;border: 1px solid #4488ff;}
+input[type="button"]{margin: 0 5px;padding: 5px 7px;background: #f1f1f1;}
+input[type="button"]:hover{cursor: pointer;background: #4488ff;border: 1px solid #fff; color: #fff;}
+input[type="button"]:focus{outline: none;border: 1px solid #fff;}
+.error{display: none;color: red;font-size: 12px;padding: 5px 0;margin: 0;padding-left: 85px;}
+.info{color: #4488ff;font-size: 12px;text-align: right;margin: 0;padding-top: 5px;}
+.rank-box{width: 100%; text-align: center;margin: 10px 0;}
+.info{color: #333;}
+.info div{padding:20px;border: 1px solid #4488ff;}
+.info h4{text-align: left;}
+.info ol{padding: 0;}
+.info li{margin: 5px 0;background: none;height: auto;width: auto;text-align: left;display: block;list-style: decimal inside;}

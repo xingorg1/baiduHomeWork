@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>第四期-事件与DOM</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+		<input type="text" placeholder="请输入有效的数字">
+		<span class="row">
+			<input type="button" value="左侧入">
+			<input type="button" value="右侧入">
+			<input type="button" value="左侧出">
+			<input type="button" value="右侧出">
+			<input type="button" value="正排序">
+			<input type="button" value="逆排序">
+		</span>
+		<div class="pop">
+			<h4></h4>
+			<span class="close">X</span>
+		</div>
+		<div class="del-pop" style="transform: scale(0)">
+			<h4>确定要删除数值<b>50</b>吗？</h4>
+			<input type="button" value="确定">
+			<input type="button" value="取消">
+		</div>
+		<div class="rank-box">
+			<ul>
+				<li style="height: 50px;">
+				</li>
+				<li style="height: 5px;">
+				</li>
+				<li style="height: 10px;">
+				</li>
+				<li style="height: 100px;">
+				</li>
+			</ul>
+			<p class="no-data">没有数据了！</p>
+		</div>
+	</div>
+	<script>
+		// 预备变量
+		var oInput = document.querySelector('input[type="text"]');
+		var oRankBox = document.querySelector('.rank-box ul');
+		var oNoData = document.querySelector('.no-data');
+		var oPop = document.querySelector('.pop');
+		var oDelPop = document.querySelector('.del-pop');
+		var oClose = document.querySelector('.close');
+		var oBtns = document.querySelectorAll('input[type="button"]');//通过querySelectorAll事件选取所有的按钮，并利用数组下标的获取方法从选取出来的数组集合中找到对应的元素oBtns[i].onclick = function(){}
+		var sInfoBox = oPop.children[0];
+		var sDelInfo = oDelPop.children[0].children[0];
+		// 增加点击柱状图则删除本柱状图的效果
+		function liDelSelf(){
+			for(var i = 0; i < oRankBox.children.length; i++){
+				oRankBox.children[i].onclick = function(){
+					var value = parseInt(this.style.height);
+					var childLI = this;
+					delPop(value,childLI);
+				}
+			}
+		}
+		liDelSelf();
+		// 预备函数
+			// 弹层动画
+		function popTrans(popIndex,scale,txt){
+			if(popIndex == 1){
+				// 提示数据填写错误弹层
+				oPop.style.transform = 'scale('+scale+')';
+				sInfoBox.innerText = txt;
+			}else{
+				// 删除数据的弹层动画
+				oDelPop.style.transform = 'scale('+scale+')';
+				sDelInfo.innerText = txt;
+			}
+		}
+			// 判断数据并插入
+		function testValue(status){
+			// 数值判断
+			var value = oInput.value;
+			if(value){
+				if(value >= 0 && value <= 100){//加上判断01的情况，把前边的0去掉
+					if(value[0] == 0 || value.length > 1){
+						// popTrans(1,1,parseInt(value));//去掉以0开头的数字前边的0
+						if(status == 1){
+							creatLi(parseInt(value),status);
+						}else{
+							creatLi(parseInt(value),status);
+						}
+					}else{
+						if(status == 1){
+							creatLi(value,status);
+						}else{
+							creatLi(value,status);
+						}
+					}
+				}else{
+					if(isNaN(value)){
+						popTrans(1,1,"数字！数字！纯数字！ok？");
+					}else{
+						popTrans(1,1,"请输入0-100以内的数字！");
+					}
+				}
+			}else{
+						popTrans(1,1,"请输入内容再点我好吗！");
+			}
+			oInput.value = null;
+		}
+			// 插入结构
+		function creatLi(num,stat){
+			var oLi = document.createElement('li');
+			oLi.style.height = num+"px";
+			if(stat == 1){
+				oRankBox.insertBefore(oLi,oRankBox.children[0])
+			}else{
+				oRankBox.appendChild(oLi)
+			}
+			liDelSelf();//重新插入的元素，要再次遍历到oRankBox的children集合里边，才能给新增加的结构绑定点击事件。
+		}
+			// 删除弹窗
+		function delPop(value,childLI){
+			popTrans(2,1,value);
+			oBtns[6].onclick = function(){
+					// 确定删除按钮
+					// 关掉弹窗后延迟删除
+				popTrans(2,0,value);
+				setTimeout(function(){
+					oRankBox.removeChild(childLI);
+				},300);
+			}
+			oBtns[7].onclick = function(){
+					// 确定删除按钮
+					// 不删除只关掉弹窗
+					popTrans(2,0,value);
+			}
+		}
+			// 删除一个li结构
+		function delLi(stat){
+			var nLength =  oRankBox.children.length;
+			if(nLength <= 1){
+				oNoData['style'].display = "block";
+			}
+			if(nLength == 0){
+				popTrans(1,1,'没完了？！');
+			}else{
+				if(stat == 1){
+					var value = parseInt(oRankBox.children[0]['style'].height);
+					var oLI = oRankBox.children[0];
+					delPop(value,oLI);
+				}else{
+					var value = parseInt(oRankBox.children[(nLength-1)]['style'].height);
+					var oLI = oRankBox.children[(nLength-1)];
+					delPop(value,oLI);
+				}
+			}
+		}
+			// 排序
+		function sortArr(a,b){
+			return a - b;//正序
+		}
+		function sortArrInver(a,b){
+			return b - a;//b-a为倒序
+		}
+		function rankFun(stat){
+			var nLength =  oRankBox.children.length;
+			if(nLength == 0){
+				popTrans(1,1,'没数据排个毛线！');
+			}else{
+				var arr = [];
+				var rankArr = [];
+				for(var i = 0; i < nLength; i++){
+					arr[i] = oRankBox.children[i].clientHeight
+				}
+				if(stat == 1){
+					rankArr = arr.sort(sortArr);
+				}else{
+					rankArr = arr.sort(sortArrInver);
+				}
+				// 删除所有结构（倒序遍历删除）
+				// 清空结构
+				for (var b = nLength - 1; b >= 0; b--) {//for循环多次使用，循环的变量不能都用i，会混乱的，这里i改成b
+					oRankBox.removeChild(oRankBox.children[b]);
+				}
+				// 添加新的排序后结构
+				for(var a = 0; a < rankArr.length; a++){
+					creatLi(rankArr[a],1)
+				} 
+			}
+		}
+		// 事件函数
+		oBtns[0].onclick = function(){
+				// 左侧入按钮事件	
+				testValue(1);
+		}
+		oBtns[1].onclick = function(){
+				testValue(0);
+				// 右侧入按钮事件
+		}
+		oBtns[2].onclick = function(){
+				// 左侧出按钮事件
+				delLi(1)
+		}
+		oBtns[3].onclick = function(){
+				// 右侧出按钮事件
+				delLi(0)
+		}
+		oBtns[4].onclick = function(){
+				// 正排序按钮事件
+				rankFun(1)
+				// this.disabled = true;
+				// 不能盲目进掉，因为还会点击逆排序后再来顺排序！！！
+		}
+		oBtns[5].onclick = function(){
+				// 逆排序按钮事件
+				rankFun(0)
+				// this.disabled = true;
+		}
+		oClose.onclick = function(){
+			popTrans(1,0,sInfoBox.innerText);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+1.js原生的选择器大全
+	getElementById(id)  传入一个id名，通过id查找并返回第一个符合条件的对象
+	getElementsByTagName(tagname)  返回文档中指定标签的元素数组
+	getElementsByName(name)  返回所有name值等于name参数的匹配结果的数组
+	getElementsByClassName(class)  返回文档中所有指定类名的元素数组
+	querySelector(css selector)  返回第一个符合css选择器选择的元素
+	querySelectorAll(css selector)  返回所有符合css选择器的元素数组
+2.typeof()
+3.indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。所以有了indexOf()，我就可以找到“空”字在几号，也能找到“：”在几号，再配合0与length-1，计算后用slice() 得出一段字符的相应内容
+	找字符串中某个指定位置的字符：charAt()，比如我说索引2号出来，，这样。
+4.转换	
+	大写转小写 toLowerCase()
+  小写转大写  toUpperCase()
+5.toString() 方法可把一个逻辑值转换为字符串，并返回结果。booleanObject.toString()
+6.遗留问题：如何把1变成一，把10变成十，把193变成一百九十三。。。
