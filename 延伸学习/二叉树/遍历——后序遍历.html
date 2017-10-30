@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="xing.org1^">
+	<meta name="description" content="二叉树的遍历之后序遍历法。">
+	<title>后序遍历</title>
+</head>
+<body>
+	<h3>访问顺序：先访问左子树，在访问右子树，最后访问当前节点的值</h3>
+	<h3>作用：应用到操作系统、文件系统的遍历之中</h3>
+	<h3>由下边代码可以看到，他把数组给反过来了，反着输出了一遍</h3>
+	<script>
+	var arr = [23,1,82,845,9,25,0];
+	var newArr = [];
+	var binaryTree = new BinaryTree();
+	var callBack = function(key){
+		console.log(key);
+		newArr.push(key);
+	}
+	arr.forEach(function(key){
+		binaryTree.startCreateBinary(key);
+	});
+	binaryTree.startTraveralBinary(callBack);
+	console.log(newArr);
+	// 二叉树
+		function BinaryTree(){
+			var Node = function(key){
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			};
+			// 创建
+			var oRoot = null;
+			this.startCreateBinary = function(key){
+				var newNode = new Node(key);
+				if(oRoot){
+					createBinary(oRoot,newNode);
+				}else{
+					oRoot = newNode;
+				}
+			}
+			var createBinary = function(node,newNode){
+				if(node.key > newNode.key){//这里特别注意，比较的是值的大小，不是两个函数，一定要加.key属性！！！
+					if(node.left){
+						createBinary(node.left,newNode);
+					}else{
+						node.left = newNode;
+					}
+				}else{
+					if(node.right){
+						createBinary(node.right,newNode);
+					}else{
+						node.right = newNode;
+					}
+				}
+			};
+
+			// 遍历
+			this.startTraveralBinary = function(callback){
+				traveralBinary(oRoot,callback);
+			}
+			var traveralBinary = function(node,callback){
+				if(node){
+					traveralBinary(node.left,callback);
+					traveralBinary(node.right,callback);
+					callback(node.key);
+				}else{
+					console.log("没有结构，不用遍历！");
+				}
+			};
+		};
+	</script>
+</body>
+</html>

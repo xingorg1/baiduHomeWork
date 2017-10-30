@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="xing.org1^">
+	<meta name="description" content="二叉树的节点查找">
+	<title>二叉树的节点查找</title>
+</head>
+<body>
+	<h4>查找节点的理念就是：看这个节点是不是在二叉树当中。</h4>
+	<h4>应用：广泛</h4>
+	<h4>方法分为三种：</h4>
+	<ol>
+		<li>查找二叉树节点的最小值：其实就是一直遍历，从根节点开始，找当前节点的左孩子，直到某个节点没有左孩子了，那么这个节点就是整个二叉树的最小值了（因为左孩子里的值比节点的值小，右节点的比当前节点的大。这是一个固定规律。）</li>
+		<li>查找二叉树节点的最大值：同样的，从根节点一直向右找，找当前节点的右孩子，直到找到某个节点他没有右节点的时候，那么这个节点就是整个二叉树的最大值。</li>
+		<li>二叉树节点中查找给定的相应节点的值：从根节点开始，先判断当前节点与给定节点的值是否一样，一样就是，不一样就判断给定的值和当前节点的值的大小，若给定值小于当前节点的值就向左（进入当前节点的左子树进行比对）查找,若大于当前节点的值就向右（进入当前节点的右子树进行比较）查找。若最终找不到给定的值，就是没有这个值，查找失败。</li>
+	</ol>
+	<script>
+		var	arr = [3416,33,423,212,12];
+		var binaryTree = new BinaryTree();
+		arr.forEach(function(key){
+			binaryTree.startCreateBinary(key);
+		});
+		// 调用接口，查找二叉树的最小值。
+		var minArr = binaryTree.startSearchBinary("min");
+		var maxArr = binaryTree.startSearchBinary("max");
+		console.log("最小值为："+minArr);
+		console.log("最大值为："+maxArr)
+		var searchNum = binaryTree.startSearchBinaryNum(1);
+		console.log(searchNum);
+		// 二叉树
+		function BinaryTree(){
+			var Node = function(key){
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			};
+			var oRoot = null;
+			this.startCreateBinary = function(key){
+				var newNode = new Node(key);
+				if(oRoot){
+					createBinary(oRoot,newNode);
+				}else{
+					oRoot = newNode;
+				}
+			};
+			var createBinary = function(node,newNode){
+				if(node.key > newNode.key){//这里是比较两个值的大小，在这里栽坑十几次了！！！
+					if(node.left){
+						createBinary(node.left,newNode);
+					}else{
+						node.left = newNode;
+					}
+				}else{
+					if(node.right){
+						createBinary(node.right,newNode);
+					}else{
+						node.right = newNode;
+					}
+				}
+			};
+			// 查找并返回二叉树节点(最大值/最小值)
+			this.startSearchBinary = function(type){
+				if(type === "min"){
+					return searchMinBinary(oRoot);
+				}else{
+					return searchMaxBinary(oRoot);
+				}
+			};
+			var searchMinBinary = function(node){
+				if(node){
+					// 这里判断是否有左子树的方法除了while还可以用if方法！
+					if(node.left){
+						// 这里，当本节点有左子节点时，应该把左子树当做新的根节点重新查找
+						node = node.left;//函数内部，数值身份的转换。
+						return searchMinBinary(node);//这里依然递归调用的话，会导致虽然找到最小的1，但是找最小值的函数是嵌套在父元素的，等找完最小值后还会执行父节点剩下的函数，也就是后边return 2那里。所以最后返回的都将是2。所以解决方法是这里return出去，让他停止继续递归。霍哈哈哈，所以我自己写的if判断的写法是有用的。
+					}else{
+						// 查找左子树一直找不到的时候应该怎么办？返回当前值啊！就是node的key值啊！
+						return node.key;
+					}
+				}
+					return null;
+					
+				// while方法
+				// if(node){
+				// 	while(node && node.left !== null){
+				// 		node = node.left;
+				// 	}
+				// 	return node.key;
+				// }
+				// return null//连二叉树都是空的话，那就直接返回空。
+			};
+			var searchMaxBinary = function(node){
+				if(node){
+					while(node && node.right !== null){
+						node = node.right;
+					}
+					return node.key;
+				}
+				return null;
+			};
+			// 查找某个特定的值
+			this.startSearchBinaryNum = function(key){
+				return searchBinary(oRoot,key)
+			}
+			var searchBinary = function(node,newNode){
+				if(node){
+					if(node.key == newNode){
+						return node.key;
+					}else if(node.key > newNode){
+						node = node.left;
+						// searchBinary(node,newNode);//这种写法导致我每次都是嵌套遍历，然后最后结果都是console.log("没有结果");后来发现，这里也应该有return，不然即使找到了相应的值，但是语句还是会继续执行所以导致最后都是不正确的值！
+						return searchBinary(node,newNode);
+					}else{
+						node = node.right;
+						return searchBinary(node,newNode);
+					}
+				}
+				console.log("没有结果");
+			};
+		}
+	</script>
+</body>
+</html>

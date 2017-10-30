@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二叉树叶子节点的删除</title>
+</head>
+<body>
+	<script>
+		var arr = [23,15,54,1,6213,17];
+		console.log(arr);
+		var binaryTree = new BinaryTree();
+		arr.forEach(function(key){
+			binaryTree.startCreateBinary(key);
+		});
+		binaryTree.startRemoveNode(1);
+		console.log(arr);
+		function BinaryTree(){
+			var Node = function(key){
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			}
+			var oRoot = null;
+			this.startCreateBinary = function(key){
+				var newNode = new Node(key);
+				if(oRoot){
+					createBinary(oRoot,newNode);
+				}else{
+					oRoot = newNode;
+				}
+			};
+			var createBinary = function(node,newNode){
+				if(node.key > newNode.key){
+					if(node.left){
+						createBinary(node.left,newNode);
+					}else{
+						node.left = newNode;
+					}
+				}else{
+					if(node.right){
+						createBinary(node.right,newNode);
+					}else{
+						node.right = newNode;
+					}
+				}
+			};
+			// 删除二叉树的叶子节点
+			this.startRemoveNode = function(removeKey){//创建一个删除的接口，传进一个要删除的值
+				oRoot = removeLeafNode(oRoot,removeKey);//调用删除方法，传入两个值，第一次要比较的根节点和传进来的值。
+			};
+			// 删除叶子节点方法
+			var removeLeafNode = function(node,removeKey){
+				if(node === null){//判断整个二叉树是否为空
+					return null;
+				}//
+				if(removeKey < node.key){//判断要删除的值与当前节点的值是否相等
+					node.left = removeNode(node.left,removeKey);//如果不相等，那就站在node.left这个节点上，继续调用一遍删除节点的函数
+					return node;//如果他的子节点刚好是要删除的那个，删完回来后返回node
+				}else if(removeKey > node.key){//同理node.left
+					node.right = removeNode(node.right,removeKey);
+					return node;
+				}else{//当前节点的值刚好等于要删除的值，
+					// 如果左右两个节点都没有（就是叶子节点）
+					if(node.left === null && node.right === null){//并且符合叶子节点的特点：左右子节点都为空；
+						node = null;//把当前节点设为空表示删除这个节点了。
+						return node;
+					}else{//删除中间节点（即有子节点的节点)
+						// 如果左子节点为空，则将本节点等于他的右节点
+						if(node.left === null){
+							node = node.right;
+							return node;
+						}else if(node.right === null){
+							node = node.left;
+							return node;
+						}else{
+							// 如果左右两个节点都有
+						}
+						// 如果右子节点为空，则将本节点等于他的左节点
+					}
+				}
+			};
+		}
+	</script>
+</body>
+</html>

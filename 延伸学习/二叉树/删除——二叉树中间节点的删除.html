@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二叉树中间节点的删除</title>
+</head>
+<body>
+	<script>
+		function BinaryTree(){
+			var Node = function(key){
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			};
+			var oRoot = null;
+			this.startCreateBinary = function(key){
+				var newNode = new Node(key);
+				if(oRoot){
+					createBinary(oRoot,newNode);
+				}else{
+					oRoot = newNode;
+				}
+			};
+			var createBinary(node,newNode){
+				if(node > newNode){
+					if(node.left){
+						createBinary(node.left,newNode);
+					}else{
+						node.left = newNode;
+					}
+				}else{
+					if(node.right){
+						createBinary(node.right,newNode);
+					}else{
+						node.right = newNode;
+					}
+				}
+			};
+			// 删除中间节点
+			this.startRemoveNode = function(key){
+				removeNode(oRoot,key);
+			};
+			var removeNode = function(node,removeKey){
+				if(!node){
+					return null;
+				};
+				if(){
+					
+				}
+			}
+		}
+	</script>
+</body>
+</html>
