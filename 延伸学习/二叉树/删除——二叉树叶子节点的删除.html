@@ -5,6 +5,7 @@
 	<title>二叉树叶子节点的删除</title>
 </head>
 <body>
+
 	<script>
 		var arr = [23,15,54,1,6213,17];
 		console.log(arr);
@@ -44,12 +45,22 @@
 					}
 				}
 			};
+			// 找到最小值节点
+			var findMinNode = function(node){
+				if(node) {
+					while(node && node.left !== null){
+						node = node.left;
+					}
+					return node;
+				}
+				return null;
+			}
 			// 删除二叉树的叶子节点
 			this.startRemoveNode = function(removeKey){//创建一个删除的接口，传进一个要删除的值
-				oRoot = removeLeafNode(oRoot,removeKey);//调用删除方法，传入两个值，第一次要比较的根节点和传进来的值。
+				oRoot = removeNode(oRoot,removeKey);//调用删除方法，传入两个值，第一次要比较的根节点和传进来的值。
 			};
-			// 删除叶子节点方法
-			var removeLeafNode = function(node,removeKey){
+			// 删除叶子节点方法+删除中间节点的方法
+			var removeNode = function(node,removeKey){
 				if(node === null){//判断整个二叉树是否为空
 					return null;
 				}//
@@ -64,19 +75,23 @@
 					if(node.left === null && node.right === null){//并且符合叶子节点的特点：左右子节点都为空；
 						node = null;//把当前节点设为空表示删除这个节点了。
 						return node;
-					}else{//删除中间节点（即有子节点的节点)
+					};
+
+
+					//删除中间节点（即有子节点的节点)
 						// 如果左子节点为空，则将本节点等于他的右节点
-						if(node.left === null){
-							node = node.right;
-							return node;
-						}else if(node.right === null){
-							node = node.left;
-							return node;
-						}else{
-							// 如果左右两个节点都有
-						}
-						// 如果右子节点为空，则将本节点等于他的左节点
+					if(node.left === null){//如果中间节点只有右孩子
+						node = node.right;
+						return node;
+					}else if(node.right === null){//如果中间节点只有左孩子
+						node = node.left;// 即右子节点为空，则将本节点等于他的左节点
+						return node;
 					}
+						// 如果左右两个节点都有
+					// 找到这个中间节点的右孩子的最小的左孩子，然后把值复制下来，再把这个孩子删除掉（相当于把这个孩纸移动过来了)
+					var aux = findMinNode(node.right);
+					node.key = aux.key;
+					node.right = removeNode(node.right,aux.key);
 				}
 			};
 		}
